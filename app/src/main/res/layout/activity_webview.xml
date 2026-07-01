@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- ===================================================== -->
+    <!-- APP BAR: Modern with subtle shadow + actions           -->
+    <!-- ===================================================== -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:elevation="4dp"
+        app:liftOnScroll="false">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_back"
+            app:navigationIconTint="@color/text_primary"
+            app:title="Loading…"
+            app:titleTextColor="@color/text_primary"
+            app:titleTextAppearance="@style/TextAppearance.WebViewTitle"
+            app:titleCentered="false"
+            app:menu="@menu/menu_webview" />
+
+        <!-- Thin linear progress bar that tracks page loading (0–100) -->
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:indeterminate="false"
+            android:progress="0"
+            android:visibility="gone"
+            app:indicatorColor="@color/colorPrimary"
+            app:trackColor="#FFE9B0"
+            app:trackThickness="3dp"
+            app:trackCornerRadius="0dp" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- ===================================================== -->
+    <!-- CONTENT: WebView + initial skeleton loading overlay    -->
+    <!-- ===================================================== -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!-- The actual WebView -->
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- ──────────────────────────────────────────── -->
+        <!-- FULL-SCREEN loading overlay shown on startup  -->
+        <!-- ──────────────────────────────────────────── -->
+        <LinearLayout
+            android:id="@+id/loadingOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#FAFAFA"
+            android:visibility="visible">
+
+            <!-- Bee / brand icon circle -->
+            <FrameLayout
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:background="@drawable/circle_bg_primary_light"
+                android:layout_marginBottom="24dp">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:indeterminate="true"
+                    app:indicatorColor="@color/colorPrimary"
+                    app:trackColor="#FFE9B0"
+                    app:trackThickness="5dp"
+                    app:indicatorSize="96dp" />
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/logo"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="App logo" />
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/loading_page"
+                android:textSize="15sp"
+                android:textColor="#9E9E9E"
+                android:fontFamily="@font/matcha" />
+
+        </LinearLayout>
+
+        <!-- ──────────────────────────────────────── -->
+        <!-- ERROR state (no connection / bad URL)    -->
+        <!-- ──────────────────────────────────────── -->
+        <LinearLayout
+            android:id="@+id/errorView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp"
+            android:background="#FAFAFA"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/no_internet"
+                android:contentDescription="No connection"
+                android:layout_marginBottom="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/couldnt_load_page"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#2D2D2D"
+                android:fontFamily="@font/harabara"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/check_internet_try_again"
+                android:textSize="13sp"
+                android:textColor="#9E9E9E"
+                android:fontFamily="@font/matcha"
+                android:gravity="center"
+                android:layout_marginBottom="28dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRetry"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="@string/try_again"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                app:backgroundTint="@color/colorPrimary"
+                app:cornerRadius="28dp"
+                android:elevation="4dp" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

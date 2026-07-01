@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="28dp"
+    android:background="@android:color/white"
+    android:gravity="center">
+
+    <!-- Warning Icon -->
+    <ImageView
+        android:id="@+id/iv_suspended_icon"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:src="@drawable/ic_warning"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="Warning" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tv_suspended_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aplikasi Tidak Tersedia"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#1A1A2E"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginBottom="10dp" />
+
+    <!-- Message from server -->
+    <TextView
+        android:id="@+id/tv_suspended_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aplikasi ini sudah tidak tersedia. Silakan pindah ke aplikasi baru kami."
+        android:textSize="14sp"
+        android:textColor="#6B7280"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.4"
+        android:layout_marginBottom="28dp" />
+
+    <!-- Open New App Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_open_new_app"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Buka Aplikasi Baru"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:backgroundTint="#E78C02"
+        app:cornerRadius="14dp"
+        app:icon="@drawable/ic_open_in_new"
+        app:iconGravity="end"
+        app:iconTint="@android:color/white" />
+
+</LinearLayout>

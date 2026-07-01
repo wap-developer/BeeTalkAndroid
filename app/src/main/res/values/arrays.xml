@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="default_age_range">
+        <item>18</item>
+        <item>50</item>
+    </array>
+    
+    <array name="initial_age_range">
+        <item>18.0</item>
+        <item>35.0</item>
+    </array>
+</resources>

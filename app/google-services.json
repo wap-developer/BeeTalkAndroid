@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1097986712288",
+    "project_id": "tinderkw-edff6",
+    "storage_bucket": "tinderkw-edff6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097986712288:android:b76e4d2b1db86c724da685",
+        "android_client_info": {
+          "package_name": "com.beeflirt.beetalk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsl8i5i1jJDOi3APeqiEVYOwc-czugDZo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097986712288:android:39ae6d77c048187d4da685",
+        "android_client_info": {
+          "package_name": "com.example.tinderkwapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsl8i5i1jJDOi3APeqiEVYOwc-czugDZo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

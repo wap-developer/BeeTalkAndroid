@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bee Talk Lite</string>
+
+    <!-- Welcome -->
+    <string name="title_choose">คุณสับสนกับ \nภาษาในแอปพลิเคชันนี้หรือไม่? \nไม่ต้องกังวล</string>
+    <string name="language_title">เลือกภาษาจากด้านล่าง</string>
+    <string name="privacy_policy">นโยบายความเป็นส่วนตัว</string>
+
+    <string name="greetings">เชื่อมต่อกับผู้คนใหม่ๆ ในโลก</string>
+    <string name="company_name">RexT Digital</string>
+    <string name="mainselect_greeting_title">สวัสดี ยินดีต้อนรับสู่ \nBee§talk Lite </string>
+    <string name="welcome_greetings">คุณพร้อมสำหรับอนาคตหรือยัง? ไปกันเลย!</string>
+    <string name="next_btn">ถัดไป</string>
+    <string name="back_btn">&lt;&lt; กลับ</string>
+    <string name="rate_btn">ให้คะแนนตอนนี้</string>
+
+    <string name="signin_btn">เข้าสู่ระบบ</string>
+    <string name="signup_btn">ลงทะเบียน</string>
+    <string name="find_new_friends">ค้นหาผู้คนใหม่ๆ และขยายวงสังคมของคุณ\nเราพร้อมที่จะเชื่อมต่อคุณกับคนที่ใช่เสมอ</string>
+    <string name="reach_friends">เข้าถึงเพื่อน\nได้กว้างขวางขึ้น</string>
+    <string name="hello_again">สวัสดีอีกครั้ง!</string>
+
+    <string name="register_title">สร้างบัญชี</string>
+    <string name="register_subtitle">เข้าร่วม BeeTalk และเริ่มเชื่อมต่อ</string>
+
+    <!-- Authentication -->
+    <string name="welcome_back">ยินดีต้อนรับกลับมา!</string>
+    <string name="create_account">สร้างบัญชี</string>
+    <string name="email">อีเมล</string>
+    <string name="password">รหัสผ่าน</string>
+    <string name="confirm_password">ยืนยันรหัสผ่าน</string>
+    <string name="login">เข้าสู่ระบบ</string>
+    <string name="register">ลงทะเบียน</string>
+    <string name="dont_have_account">ยังไม่มีบัญชี? ลงทะเบียน</string>
+    <string name="already_have_account">มีบัญชีอยู่แล้ว? เข้าสู่ระบบ</string>
+
+    <!-- Profile -->
+    <string name="full_name">ชื่อเต็ม</string>
+    <string name="birth_date">วันเกิด (ปปปป-ดด-วว)</string>
+    <string name="gender">เพศ</string>
+    <string name="male">ชาย</string>
+    <string name="female">หญิง</string>
+    <string name="other">อื่นๆ</string>
+    <string name="bio">ประวัติ</string>
+    <string name="bio_optional">ประวัติ (ไม่บังคับ)</string>
+
+    <!-- Navigation -->
+    <string name="nav_swipe">ปัด</string>
+    <string name="nav_matches">คู่ที่ตรงกัน</string>
+    <string name="nav_messages">ข้อความ</string>
+    <string name="nav_profile">โปรไฟล์</string>
+
+    <!-- Actions -->
+    <string name="send">ส่ง</string>
+    <string name="save">บันทึก</string>
+    <string name="cancel">ยกเลิก</string>
+    <string name="delete">ลบ</string>
+    <string name="logout">ออกจากระบบ</string>
+    <string name="edit_profile">แก้ไขโปรไฟล์</string>
+
+    <!-- Messages -->
+    <string name="login_successful">เข้าสู่ระบบสำเร็จ!</string>
+    <string name="registration_successful">ลงทะเบียนสำเร็จ!</string>
+    <string name="logout_successful">ออกจากระบบสำเร็จ!</string>
+    <string name="error_occurred">เกิดข้อผิดพลาด โปรดลองอีกครั้ง</string>
+    <string name="its_a_match">มันคือคู่ที่ใช่!</string>
+    <string name="type_message">พิมพ์ข้อความ...</string>
+
+    <string name="like">ชอบ</string>
+    <string name="nope">ไม่</string>
+    <string name="discovery_preferences">การตั้งค่าการค้นหา</string>
+    <string name="account_settings">การตั้งค่าบัญชี</string>
+    <string name="choose_language">เลือกภาษา</string>
+    <string name="indonesia">อินโดนีเซีย</string>
+    <string name="english">อังกฤษ</string>
+    <string name="thailand">ไทย</string>
+    <string name="swipes_greeting">ค้นหาคู่ที่สมบูรณ์แบบของคุณ ✨</string>
+    <string name="super_likes_left">เหลืออีก %1$d ⭐ ซูเปอร์ไลค์ วันนี้</string>
+    <string name="watch_ad_plus">📺 ดูโฆษณาเพื่อรับพลัส</string>
+    <string name="no_more_people">ไม่มีคนอื่นแล้ว</string>
+    <string name="try_broadening">ลองขยายการตั้งค่าการค้นหาของคุณ!</string>
+    <string name="signin_subtitle">เข้าสู่ระบบเพื่อดำเนินการต่อ</string>
+    <string name="enter_email">ใส่อีเมลของคุณ</string>
+    <string name="enter_password">ใส่รหัสผ่านของคุณ</string>
+    <string name="forgot_password_q">ลืมรหัสผ่าน?</string>
+    <string name="dont_have_account_q">ยังไม่มีบัญชี? </string>
+    <string name="chat">แชท</string>
+    <string name="your_preferences">การตั้งค่าของคุณ</string>
+    <string name="customize_preferences">กำหนดว่าคุณต้องการพบใคร</string>
+    <string name="interested_in">สนใจใน</string>
+    <string name="men">👨 ผู้ชาย</string>
+    <string name="women">👩 ผู้หญิง</string>
+    <string name="both">🌈 ทั้งคู่</string>
+    <string name="age_range">ช่วงอายุ</string>
+    <string name="max_distance">ระยะทางสูงสุด</string>
+    <string name="location_info">เราใช้ตำแหน่งของคุณเพื่อแสดงคู่ที่อยู่ใกล้เคียง ตำแหน่งที่แน่นอนของคุณจะไม่ถูกแชร์</string>
+    <string name="location_disabled">ไม่ได้เปิดใช้งานตำแหน่ง</string>
+    <string name="location">ตำแหน่ง</string>
+    <string name="your_full_name">ชื่อเต็มของคุณ</string>
+    <string name="min_8_chars">อย่างน้อย 8 ตัวอักษร</string>
+    <string name="re_enter_password">ใส่รหัสผ่านอีกครั้ง</string>
+    <string name="select_birth_date">เลือกวันเกิด</string>
+    <string name="male_symbol">♂ ชาย</string>
+    <string name="female_symbol">♀ หญิง</string>
+    <string name="other_symbol">⚧ อื่นๆ</string>
+    <string name="bio_hint">เล่าบางอย่างเกี่ยวกับตัวคุณ...</string>
+    <string name="agree_to_the">ฉันยอมรับ </string>
+    <string name="terms">ข้อกำหนด</string>
+    <string name="and_symbol"> &amp; </string>
+    <string name="already_have_account_q">มีบัญชีอยู่แล้ว? </string>
+    <string name="change_password">เปลี่ยนรหัสผ่าน</string>
+    <string name="current_password">รหัสผ่านปัจจุบัน</string>
+    <string name="new_password">รหัสผ่านใหม่</string>
+    <string name="confirm_new_password">ยืนยันรหัสผ่านใหม่</string>
+    <string name="update_password">อัปเดตรหัสผ่าน</string>
+    <string name="advanced">ขั้นสูง</string>
+    <string name="danger_zone">โซนอันตราย</string>
+    <string name="delete_account_info">การลบบัญชีของคุณจะลบคู่ที่ตรงกัน ข้อความ รูปภาพ และข้อมูลโปรไฟล์ทั้งหมดของคุณจาก BeeTalk อย่างถาวร ไม่สามารถย้อนกลับได้</string>
+    <string name="delete_account_btn">ลบบัญชีของฉัน</string>
+    <string name="yrs_unit">%1$d - %2$d ปี</string>
+    <string name="km_unit">%1$d กม.</string>
+    <string name="save_preferences">บันทึกการตั้งค่า</string>
+    <string name="app_name_full">BeeTalk Lite</string>
+    <string name="app_tagline">เชื่อมต่อระยะทาง รวมใจเป็นหนึ่งเดียว</string>
+    <string name="skip">ข้าม</string>
+
+    <string name="reset_code_instruction">เราจะส่งรหัสรีเซ็ตไปยังอีเมลของคุณ</string>
+    <string name="forgot_password_details">ใส่อีเมลที่คุณใช้เมื่อเข้าร่วม แล้วเราจะส่งลิงก์รีเซ็ตให้คุณ</string>
+    <string name="send_reset_code">ส่งรหัสรีเซ็ต</string>
+    <string name="remember_password_q">จำรหัสผ่านได้แล้ว? </string>
+    <string name="back_to_login">กลับไปที่หน้าเข้าสู่ระบบ</string>
+
+    <string name="verify_your_email">ยืนยันอีเมลของคุณ</string>
+    <string name="check_inbox_otp">ตรวจสอบกล่องจดหมายเพื่อหารหัส 6 หลัก</string>
+    <string name="sent_code_to">เราส่งรหัสไปที่</string>
+    <string name="enter_6_digit">ใส่รหัส 6 หลัก</string>
+    <string name="resend_timer">ส่งอีกครั้งได้ใน %1$d วินาที</string>
+    <string name="verify_code">ยืนยันรหัส</string>
+    <string name="didnt_receive_code">ไม่ได้รับรหัส? </string>
+    <string name="resend">ส่งอีกครั้ง</string>
+
+    <string name="create_secure_password">สร้างรหัสผ่านที่รัดกุมและปลอดภัย</string>
+    <string name="password_length_instruction">รหัสผ่านใหม่ของคุณต้องมีอย่างน้อย 8 ตัวอักษร</string>
+    <string name="re_enter_new_password">ใส่รหัสผ่านใหม่อีกครั้ง</string>
+    <string name="set_new_password_btn">ตั้งรหัสผ่านใหม่</string>
+
+    <string name="check_your_email">ตรวจสอบอีเมลของคุณ</string>
+    <string name="enter_6_digit_sent">ใส่รหัส 6 หลักที่เราส่งให้คุณ</string>
+    <string name="enter_6_digit_details">โปรดระบุรหัสยืนยัน 6 หลักที่ส่งไปยังอีเมลของคุณ</string>
+    <string name="verification_code_label">รหัสยืนยัน</string>
+
+    <string name="error_email_required">โปรดใส่อีเมลของคุณ</string>
+    <string name="error_invalid_email">โปรดใส่อีเมลที่ถูกต้อง</string>
+    <string name="success_code_sent">ส่งรหัสรีเซ็ตแล้ว! ตรวจสอบอีเมลของคุณ</string>
+    <string name="error_send_code_failed">ล้มเหลวในการส่งรหัสรีเซ็ต</string>
+    <string name="error_otp_required">โปรดใส่รหัส OTP</string>
+    <string name="error_otp_invalid">รหัส OTP ต้องมี 6 หลัก</string>
+    <string name="success_otp_verified">รหัส OTP ได้รับการยืนยันแล้ว! ตั้งรหัสผ่านใหม่ของคุณ</string>
+    <string name="error_verify_failed">การยืนยันล้มเหลว</string>
+    <string name="success_code_resent">ส่งรหัสอีกครั้งแล้ว! ตรวจสอบอีเมลของคุณ</string>
+    <string name="error_resend_failed">ล้มเหลวในการส่งรหัสอีกครั้ง</string>
+
+    <string name="error_missing_data">ข้อผิดพลาด: ข้อมูลหายไป</string>
+    <string name="error_password_required">โปรดใส่รหัสผ่านใหม่</string>
+    <string name="error_password_min_length">รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร</string>
+    <string name="error_passwords_dont_match">รหัสผ่านไม่ตรงกัน</string>
+    <string name="success_password_reset">รีเซ็ตรหัสผ่านสำเร็จแล้ว! โปรดเข้าสู่ระบบ</string>
+    <string name="error_password_reset_failed">ล้มเหลวในการรีเซ็ตรหัสผ่าน</string>
+
+    <string name="loading_verifying_code">กำลังยืนยันรหัส…</string>
+    <string name="loading_saving_password">กำลังบันทึกรหัสผ่าน…</string>
+    <string name="loading_please_wait">โปรดรอสักครู่</string>
+
+    <string name="your_photos">รูปภาพของคุณ</string>
+    <string name="add_photo_instruction">เพิ่มอย่างน้อย 1 รูปเพื่อดำเนินการต่อ</string>
+    <string name="photo_tips_title">เคล็ดลับรูปภาพที่ดีที่สุด</string>
+    <string name="photo_tips_content">• ใช้รูปใบหน้าที่ชัดเจน\n• เลือกแสงที่ดี\n• หลีกเลี่ยงรูปหมู่เป็นรูปหลัก</string>
+    <string name="uploading">กำลังอัปโหลด...</string>
+    <string name="enable_location">เปิดใช้งานการเข้าถึงตำแหน่ง</string>
+    <string name="location_safety_tip">ตำแหน่งที่แน่นอนของคุณจะไม่ถูกแชร์กับผู้ใช้อื่น</string>
+    <string name="location_required">จำเป็นต้องเข้าถึงตำแหน่งเพื่อใช้งาน BeeTalk</string>
+    <string name="messages">ข้อความ</string>
+    <string name="messages_tagline">คุยกับคู่ของคุณ 💬</string>
+    <string name="silence">เงียบเหงา...</string>
+    <string name="break_ice">เริ่มบทสนทนาและเริ่มแชทกับคู่ของคุณ!</string>
+    <string name="matches">คู่ที่จับคู่</string>
+    <string name="matches_tagline">มีบางคนกำลังรอคุณอยู่ ☕</string>
+    <string name="no_matches_yet">ยังไม่มีคู่ที่จับคู่</string>
+    <string name="soulmate_swipes">ปัดต่อไป! เนื้อคู่ของคุณอยู่ห่างออกไปเพียงไม่กี่ครั้ง ✨</string>
+
+    <string name="unblock">เลิกบล็อก</string>
+    <string name="super_likes_quota">เหลือ %1$d ⭐ Super Like วันนี้</string>
+    <string name="watch_ad_for_plus">📺 ดูโฆษณาเพื่อรับ Plus</string>
+    <string name="report_reason">เหตุผลที่รายงาน</string>
+    <string name="inappropriate_photos">รูปภาพไม่เหมาะสม</string>
+    <string name="inappropriate_messages">ข้อความไม่เหมาะสม</string>
+    <string name="fake_profile">โปรไฟล์ปลอม / สแปม</string>
+    <string name="harassment">การคุกคาม</string>
+    <string name="other_reason">อื่นๆ</string>
+    <string name="spam">สแปม</string>
+    <string name="submit_report">ส่งรายงาน</string>
+    <string name="additional_details_hint">รายละเอียดเพิ่มเติม (ไม่บังคับ)</string>
+    <string name="like_overlay">ชอบ</string>
+    <string name="nope_overlay">ไม่</string>
+
+    <string name="no_internet">ไม่มีการเชื่อมต่ออินเทอร์เน็ต</string>
+    <string name="check_internet_try_again">โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณแล้วลองอีกครั้ง</string>
+    <string name="try_again">ลองอีกครั้ง</string>
+    <string name="exit">ออก</string>
+    <string name="open_in_google_maps">เปิดใน Google Maps</string>
+    <string name="logout_title">เดี๋ยวก่อน! จะไปแล้วเหรอ?</string>
+    <string name="logout_message">คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ? คุณจะพลาดคู่ใหม่ๆ นะ!</string>
+    <string name="yes_logout">ใช่ ออกจากระบบ</string>
+    <string name="stay_on_beetalk">อยู่ใน BeeTalk ต่อ</string>
+    <string name="location_required_title">จำเป็นต้องเข้าถึงตำแหน่ง</string>
+    <string name="location_required_details">BeeTalk จำเป็นต้องใช้ตำแหน่งของคุณเพื่อแสดงคู่ที่อยู่ใกล้เคียง โปรดเปิดใช้งานการเข้าถึงตำแหน่งเพื่อดำเนินการต่อ</string>
+    <string name="enable_now">เปิดใช้งานทันที</string>
+    <string name="not_now">ไม่ใช่ตอนนี้</string>
+    <string name="please_wait">โปรดรอสักครู่...</string>
+    <string name="processing_request">กำลังประมวลผลคำขอของคุณ</string>
+    <string name="user_actions">การดำเนินการของผู้ใช้</string>
+    <string name="block_user">🚫 บล็อกผู้ใช้</string>
+    <string name="report_user">🚨 รายงานผู้ใช้</string>
+    <string name="loading_page">กำลังโหลดหน้าเว็บ…</string>
+    <string name="couldnt_load_page">ไม่สามารถโหลดหน้าเว็บได้</string>
+    <string name="complete_your_profile">กรอกโปรไฟล์ของคุณให้สมบูรณ์</string>
+    <string name="profile_setup_tagline">มาตั้งค่าโปรไฟล์ของคุณเพื่อเริ่มต้นกันเลย</string>
+    <string name="back">กลับ</string>
+    <string name="my_photos">รูปภาพของฉัน</string>
+    <string name="add_up_to_6">(เพิ่มได้สูงสุด 6 รูป)</string>
+    <string name="add">เพิ่ม</string>
+    <string name="about_me">เกี่ยวกับฉัน</string>
+    <string name="basic_info">ข้อมูลพื้นฐาน</string>
+    <string name="save_profile">บันทึกโปรไฟล์</string>
+    <string name="no_messages_yet">ยังไม่มีข้อความ\nทักทายเลย! 👋</string>
+    <string name="no_blocked_users">ไม่มีผู้ใช้ที่ถูกบล็อก</string>
+    <string name="no_blocked_users_desc">คุณยังไม่ได้บล็อกใคร</string>
+
+</resources>

@@ -1,0 +1,62 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Background circle -->
+    <path
+        android:fillColor="#E8E8E8"
+        android:pathData="M50,50m-50,0a50,50 0,1 1,100 0a50,50 0,1 1,-100 0" />
+
+    <!-- Shirt / shoulders -->
+    <path
+        android:fillColor="#78909C"
+        android:pathData="M50,100 C50,100 15,100 15,82 C15,72 30,65 50,65 C70,65 85,72 85,82 C85,100 50,100 50,100Z" />
+
+    <!-- Neck -->
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M44,55 L44,65 L56,65 L56,55Z" />
+
+    <!-- Head -->
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M50,28 m-18,0 a18,20 0,1 1,36 0 a18,20 0,1 1,-36 0" />
+
+    <!-- Short hair -->
+    <path
+        android:fillColor="#5D4037"
+        android:pathData="M32,32 Q32,14 50,12 Q68,14 68,32 Q68,24 50,22 Q32,24 32,32Z" />
+
+    <!-- Beard -->
+    <path
+        android:fillColor="#5D4037"
+        android:pathData="M36,42 Q36,56 50,58 Q64,56 64,42 Q62,48 50,50 Q38,48 36,42Z" />
+
+    <!-- Mustache -->
+    <path
+        android:fillColor="#5D4037"
+        android:pathData="M40,43 Q45,40 50,43 Q55,40 60,43 Q55,46 50,44 Q45,46 40,43Z" />
+
+    <!-- Left ear -->
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M32,38 m-3,0 a3,4 0,1 1,6 0 a3,4 0,1 1,-6 0" />
+
+    <!-- Right ear -->
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M68,38 m-3,0 a3,4 0,1 1,6 0 a3,4 0,1 1,-6 0" />
+
+    <!-- Left eye -->
+    <path
+        android:fillColor="#3E2723"
+        android:pathData="M42,35 m-2.5,0 a2.5,2.5 0,1 1,5 0 a2.5,2.5 0,1 1,-5 0" />
+
+    <!-- Right eye -->
+    <path
+        android:fillColor="#3E2723"
+        android:pathData="M58,35 m-2.5,0 a2.5,2.5 0,1 1,5 0 a2.5,2.5 0,1 1,-5 0" />
+
+</vector>

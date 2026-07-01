@@ -1,0 +1,99 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Background circle -->
+    <path
+        android:fillColor="#E8E8E8"
+        android:pathData="M50,50m-50,0a50,50 0,1 1,100 0a50,50 0,1 1,-100 0" />
+
+    <!-- Long hair behind shoulders -->
+    <path
+        android:fillColor="#5D4037"
+        android:pathData="M26,30 Q26,60 30,75 L38,75 Q34,60 34,40Z M74,30 Q74,60 70,75 L62,75 Q66,60 66,40Z" />
+
+    <!-- Shirt / shoulders -->
+    <path
+        android:fillColor="#78909C"
+        android:pathData="M50,100 C50,100 15,100 15,82 C15,72 30,65 50,65 C70,65 85,72 85,82 C85,100 50,100 50,100Z" />
+
+    <!-- Neck -->
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M44,55 L44,65 L56,65 L56,55Z" />
+
+    <!-- Head -->
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M50,28 m-18,0 a18,20 0,1 1,36 0 a18,20 0,1 1,-36 0" />
+
+    <!-- Hair top and sides -->
+    <path
+        android:fillColor="#5D4037"
+        android:pathData="M30,34 Q28,14 50,10 Q72,14 70,34 Q70,24 50,20 Q30,24 30,34Z M30,34 Q28,36 28,50 L34,50 Q34,40 34,34Z M70,34 Q72,36 72,50 L66,50 Q66,40 66,34Z" />
+
+    <!-- Left ear -->
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M32,38 m-3,0 a3,4 0,1 1,6 0 a3,4 0,1 1,-6 0" />
+
+    <!-- Right ear -->
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M68,38 m-3,0 a3,4 0,1 1,6 0 a3,4 0,1 1,-6 0" />
+
+    <!-- Glasses frame left -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M42,36 m-7,0 a7,6 0,1 1,14 0 a7,6 0,1 1,-14 0"
+        android:strokeWidth="1.8"
+        android:strokeColor="#37474F" />
+
+    <!-- Glasses frame right -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M58,36 m-7,0 a7,6 0,1 1,14 0 a7,6 0,1 1,-14 0"
+        android:strokeWidth="1.8"
+        android:strokeColor="#37474F" />
+
+    <!-- Glasses bridge -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M49,35 L51,35"
+        android:strokeWidth="1.8"
+        android:strokeColor="#37474F" />
+
+    <!-- Glasses left arm -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M35,35 L30,34"
+        android:strokeWidth="1.5"
+        android:strokeColor="#37474F" />
+
+    <!-- Glasses right arm -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M65,35 L70,34"
+        android:strokeWidth="1.5"
+        android:strokeColor="#37474F" />
+
+    <!-- Left eye (behind glasses) -->
+    <path
+        android:fillColor="#3E2723"
+        android:pathData="M42,37 m-2,0 a2,2.5 0,1 1,4 0 a2,2.5 0,1 1,-4 0" />
+
+    <!-- Right eye (behind glasses) -->
+    <path
+        android:fillColor="#3E2723"
+        android:pathData="M58,37 m-2,0 a2,2.5 0,1 1,4 0 a2,2.5 0,1 1,-4 0" />
+
+    <!-- Mouth -->
+    <path
+        android:fillColor="#E57373"
+        android:pathData="M45,46 Q50,50 55,46"
+        android:strokeWidth="1.2"
+        android:strokeColor="#E57373" />
+
+</vector>

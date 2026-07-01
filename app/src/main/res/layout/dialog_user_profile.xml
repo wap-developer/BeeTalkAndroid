@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="340dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog_loading"
+    android:orientation="vertical">
+
+    <!-- Photo header -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="24dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp">
+
+        <ImageView
+            android:id="@+id/iv_profile_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_profile" />
+
+        <!-- Gradient overlay -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/gradient_overlay" />
+
+        <!-- Name + Age overlay -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:paddingBottom="14dp"
+            android:paddingEnd="18dp"
+            android:paddingStart="18dp">
+
+            <TextView
+                android:id="@+id/tv_name_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/harabara"
+                android:shadowColor="#88000000"
+                android:shadowDx="0"
+                android:shadowDy="1"
+                android:shadowRadius="4"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                tools:text="Name, 25" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/baseline_location_on_24"
+                    app:tint="#EEFFFFFF" />
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/matcha"
+                    android:textColor="#DDFFFFFF"
+                    android:textSize="12sp"
+                    tools:text="City, Country" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Close button -->
+        <ImageView
+            android:id="@+id/btn_close"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="top|end"
+            android:layout_margin="12dp"
+            android:background="@drawable/bg_pill_dark"
+            android:padding="6dp"
+            android:src="@drawable/baseline_close_24"
+            app:tint="@android:color/white" />
+
+    </FrameLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Profile info -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Username -->
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:fontFamily="@font/harabara"
+            android:textColor="@color/primary"
+            android:textSize="14sp"
+            tools:text="@username" />
+
+        <!-- Bio -->
+        <LinearLayout
+            android:id="@+id/layout_bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/harabara"
+                android:letterSpacing="0.05"
+                android:text="ABOUT"
+                android:textColor="@color/primary"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tv_bio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/matcha"
+                android:lineSpacingExtra="3dp"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                tools:text="Bio" />
+
+        </LinearLayout>
+
+        <!-- Hobbies -->
+        <LinearLayout
+            android:id="@+id/layout_hobbies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/harabara"
+                android:letterSpacing="0.05"
+                android:text="HOBBIES"
+                android:textColor="@color/primary"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tv_hobbies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/matcha"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                tools:text="Hobbies" />
+
+        </LinearLayout>
+
+        <!-- Dreams -->
+        <LinearLayout
+            android:id="@+id/layout_dreams"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/harabara"
+                android:letterSpacing="0.05"
+                android:text="DREAMS"
+                android:textColor="@color/primary"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tv_dreams"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/matcha"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                tools:text="Dreams" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

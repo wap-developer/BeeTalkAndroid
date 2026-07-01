@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- Header Section -->
+    <RelativeLayout
+        android:id="@+id/header_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingBottom="12dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:id="@+id/tv_app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dacherry"
+            android:text="@string/app_name"
+            android:textColor="@color/primary"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_app_title"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/matcha"
+            android:text="@string/swipes_greeting"
+            android:textColor="@color/text_secondary"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/setPreferences"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/baseline_tune_24"
+            app:tint="@color/text_secondary" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/header_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/header_section"
+        android:background="#F0F0F0" />
+
+    <!-- Banner Ads -->
+    <RelativeLayout
+        android:id="@+id/banner_container"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/header_divider"
+        android:background="@android:color/white"
+        android:elevation="4dp"
+        android:visibility="gone"/>
+
+    <!-- ============================================ -->
+    <!-- MAIN AREA: Card + Floating Buttons overlay   -->
+    <!-- ============================================ -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/banner_container">
+
+        <!-- CardStackView - fills entire remaining space -->
+        <com.yuyakaido.android.cardstackview.CardStackView
+            android:id="@+id/card_stack_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="8dp" />
+
+        <!-- Floating Action Buttons - overlay at bottom of card area -->
+        <LinearLayout
+            android:id="@+id/action_buttons_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:paddingTop="16dp">
+
+            <!-- Super Like Quota -->
+            <TextView
+                android:id="@+id/tv_super_like_quota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/bg_pill_dark"
+                android:fontFamily="@font/matcha"
+                android:paddingBottom="4dp"
+                android:paddingEnd="14dp"
+                android:paddingStart="14dp"
+                android:paddingTop="4dp"
+                android:text="@string/super_likes_quota"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <!-- Undo Quota -->
+            <TextView
+                android:id="@+id/tv_undo_quota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/bg_pill_dark"
+                android:fontFamily="@font/matcha"
+                android:paddingBottom="4dp"
+                android:paddingEnd="14dp"
+                android:paddingStart="14dp"
+                android:paddingTop="4dp"
+                android:text="1 Undo left"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <!-- Watch Ad Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_watch_ad_superlike"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginBottom="12dp"
+                android:insetBottom="0dp"
+                android:insetTop="0dp"
+                android:text="@string/watch_ad_for_plus"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                app:backgroundTint="#55000000"
+                app:cornerRadius="15dp"
+                app:strokeColor="#66FFFFFF"
+                app:strokeWidth="1dp" />
+
+            <!-- Buttons Row -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- Pass (X) -->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btn_pass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/baseline_close_24"
+                    app:backgroundTint="@android:color/white"
+                    app:borderWidth="0dp"
+                    app:elevation="8dp"
+                    app:fabCustomSize="54dp"
+                    app:maxImageSize="26dp"
+                    app:tint="@color/error" />
+
+                <!-- Undo -->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btn_undo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/baseline_undo_24"
+                    app:backgroundTint="#FFC107"
+                    app:borderWidth="0dp"
+                    app:elevation="8dp"
+                    app:fabCustomSize="44dp"
+                    app:maxImageSize="22dp"
+                    app:tint="@android:color/white" />
+
+                <!-- Super Like (Star) -->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btn_super_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/baseline_star_24"
+                    app:backgroundTint="#FF9800"
+                    app:borderWidth="0dp"
+                    app:elevation="8dp"
+                    app:fabCustomSize="54dp"
+                    app:maxImageSize="26dp"
+                    app:tint="@android:color/white" />
+
+                <!-- Like (Heart) - bigger, center -->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btn_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_favorite_24"
+                    app:backgroundTint="@color/error"
+                    app:borderWidth="0dp"
+                    app:elevation="10dp"
+                    app:fabCustomSize="58dp"
+                    app:maxImageSize="34dp"
+                    app:tint="@android:color/white" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!-- Loading Indicator -->
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/primary" />
+
+    <!-- No Profiles Message -->
+    <LinearLayout
+        android:id="@+id/tv_no_profiles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="40dp"
+        android:visibility="gone">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="24dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/regis" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/harabara"
+            android:text="@string/no_more_people"
+            android:textColor="@color/text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/matcha"
+            android:gravity="center"
+            android:text="@string/try_broadening"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

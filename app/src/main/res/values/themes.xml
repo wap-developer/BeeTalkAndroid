@@ -1,0 +1,36 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.BeeTalkLite" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+
+        <!-- ✅ Override warna default M3 (ungu) dengan warna aplikasi -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@android:color/transparent</item>
+        <item name="colorError">@color/error</item>
+        <item name="android:colorBackground">@color/background</item>
+
+        <!-- Material Calendar Theme for DatePicker -->
+        <item name="materialCalendarTheme">@style/ThemeOverlay.Material3.MaterialCalendar</item>
+    </style>
+
+    <style name="Theme.BeeTalkLite" parent="Base.Theme.BeeTalkLite" />
+
+    <!-- NumberPicker style for custom date picker -->
+    <style name="NumberPickerTheme">
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="colorControlNormal">@color/primary</item>
+    </style>
+
+    <!-- WebView Toolbar title text appearance -->
+    <style name="TextAppearance.WebViewTitle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textSize">19dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">@font/harabara</item>
+    </style>
+
+</resources>

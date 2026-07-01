@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F9F5EC">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- ============================================ -->
+        <!-- TOP HEADER WITH GRADIENT                    -->
+        <!-- ============================================ -->
+        <RelativeLayout
+            android:id="@+id/headerSection"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:background="@drawable/bg_login_header"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Back button -->
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="12dp"
+                android:src="@drawable/outline_arrow_back_24"
+                app:tint="#FFFFFF"
+                android:contentDescription="Back" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_centerInParent="true">
+
+                <!-- Glowing icon circle -->
+                <FrameLayout
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/circle_bg_white_alpha">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_email"
+                        android:layout_gravity="center"
+                        android:contentDescription="Email icon"
+                        app:tint="#FFFFFF" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/verify_your_email"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/dacherry"
+                    android:layout_marginTop="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/check_inbox_otp"
+                    android:textSize="13sp"
+                    android:textColor="#FFE9B0"
+                    android:fontFamily="@font/matcha"
+                    android:layout_marginTop="4dp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <!-- ============================================ -->
+        <!-- OTP CARD                                    -->
+        <!-- ============================================ -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/otpCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="-30dp"
+            android:elevation="12dp"
+            app:cardCornerRadius="28dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@id/headerSection">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="28dp"
+                android:gravity="center">
+
+                <!-- Email display -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sent_code_to"
+                    android:textSize="13sp"
+                    android:textColor="#9E9E9E"
+                    android:fontFamily="@font/matcha"
+                    android:textAlignment="center"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/tv_user_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="user@example.com"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="#DAA646"
+                    android:fontFamily="@font/harabara"
+                    android:layout_marginBottom="28dp" />
+
+                <!-- OTP Label -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/enter_6_digit"
+                    android:textSize="13sp"
+                    android:textColor="#7A7A7A"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/harabara"
+                    android:layout_marginBottom="10dp" />
+
+                <!-- OTP Input - big, centered, letter-spaced -->
+                <EditText
+                    android:id="@+id/et_otp"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:hint="0  0  0  0  0  0"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:background="@drawable/bg_input_field"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textColor="#2D2D2D"
+                    android:textColorHint="#BFBFBF"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- Countdown timer -->
+                <TextView
+                    android:id="@+id/tv_countdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/resend_timer"
+                    android:textSize="13sp"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/matcha"
+                    android:layout_marginBottom="20dp"
+                    android:visibility="gone" />
+
+                <!-- Verify Button -->
+                <Button
+                    android:id="@+id/btn_verify"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="@string/verify_code"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19dp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/shape_white"
+                    app:backgroundTint="@color/primary"
+                    app:cornerRadius="28dp"
+                    android:elevation="6dp" />
+
+                <!-- Resend row -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/didnt_receive_code"
+                        android:textSize="13sp"
+                        android:textColor="#9E9E9E"
+                        android:fontFamily="@font/matcha" />
+
+                    <TextView
+                        android:id="@+id/tv_resend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/resend"
+                        android:textColor="#DAA646"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/matcha"
+                        android:padding="4dp"
+                        android:clickable="true"
+                        android:focusable="true" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- bottom spacer -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@id/otpCard"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

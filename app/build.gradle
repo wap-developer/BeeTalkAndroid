@@ -1,0 +1,114 @@
+plugins {
+    alias(libs.plugins.android.application)
+    id 'com.google.gms.google-services'
+}
+
+android {
+    namespace 'com.beeflirt.beetalk'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "com.beeflirt.beetalk"
+        minSdk 24
+        targetSdk 36
+        versionCode 110
+        versionName "3.0.1"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
+    
+    // Networking - Retrofit
+    implementation libs.retrofit
+    implementation libs.converter.gson
+    implementation libs.logging.interceptor
+    implementation libs.volley
+    
+    // Image Loading - Glide
+    implementation libs.glide
+    annotationProcessor libs.compiler
+    
+    // Card Stack for Swipe UI
+    implementation libs.cardstackview
+    
+    // Location Services
+    implementation libs.play.services.location
+    
+    // CircleImageView for profile photos
+    implementation libs.circleimageview
+    
+    // ViewPager2 for image slider
+    implementation libs.viewpager2
+    
+    // SwipeRefreshLayout for pull to refresh
+    implementation libs.swiperefreshlayout
+    
+    // OpenStreetMap for maps
+    implementation libs.osmdroid.android
+    
+    // Firebase Cloud Messaging for push notifications
+    implementation libs.firebase.bom
+    implementation libs.firebase.messaging
+    implementation libs.firebase.analytics
+    
+    // SweetAlert Dialog for modern alerts
+    implementation libs.library
+    
+    // Lottie for animations
+    implementation libs.lottie
+    
+    // Shimmer for loading effects
+    implementation libs.shimmer
+    
+    // AdMob - Primary ad network
+    implementation libs.play.services.ads
+    
+    // AppLovin - Backup ad network  
+    implementation libs.applovin.sdk
+    
+    // User Messaging Platform (GDPR compliance)
+    implementation libs.user.messaging.platform
+
+    // Encrypted SharedPreferences for secure token storage
+    implementation 'androidx.security:security-crypto:1.1.0-alpha06'
+
+    // Room Database for offline caching
+    implementation libs.room.runtime
+    annotationProcessor libs.room.compiler
+
+    // ExifInterface for image rotation handling
+    implementation libs.exifinterface
+
+    // Google Play In-App Review
+    implementation libs.review
+    implementation libs.app.update
+    // Testing
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}

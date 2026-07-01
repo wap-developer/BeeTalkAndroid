@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp"
+    android:background="@drawable/bg_dialog_loading">
+
+    <!-- Lottie or CircularProgress -->
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/loading_progress"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:indeterminate="true"
+        app:indicatorColor="@color/colorPrimary"
+        app:trackColor="#FFE9B0"
+        app:trackThickness="6dp"
+        app:indicatorSize="64dp"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:id="@+id/tv_loading_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/please_wait"
+        android:textSize="19dp"
+        android:textStyle="bold"
+        android:textColor="#2D2D2D"
+        android:fontFamily="@font/harabara"
+        android:layout_marginBottom="6dp" />
+
+    <TextView
+        android:id="@+id/tv_loading_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/processing_request"
+        android:textSize="13sp"
+        android:textColor="#9E9E9E"
+        android:fontFamily="@font/matcha"
+        android:gravity="center" />
+
+</LinearLayout>

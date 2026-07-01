@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bee Talk Lite</string>
+
+    <!-- Welcome -->
+    <string name="title_choose">Apakah Anda bingung dengan \nbahasa dalam aplikasi ini? \nJangan Khawatir.</string>
+    <string name="language_title">Pilih Bahasa di Bawah Ini</string>
+    <string name="privacy_policy">Kebijakan Privasi</string>
+
+    <string name="greetings">Terhubung dengan orang baru di dunia</string>
+    <string name="company_name">RexT Digital</string>
+    <string name="mainselect_greeting_title">Hai, Selamat Datang Di \nBee§talk Lite </string>
+    <string name="welcome_greetings">Apakah Kamu Siap untuk Masa Depan?\nAyo Berangkat!</string>
+    <string name="next_btn">Lanjut</string>
+    <string name="back_btn">&lt;&lt; Kembali</string>
+    <string name="rate_btn">Beri Nilai</string>
+
+    <string name="signin_btn">Masuk</string>
+    <string name="signup_btn">Daftar</string>
+    <string name="find_new_friends">Temukan orang baru dan perluas lingkaran sosial Anda\nselalu siap menghubungkan Anda dengan orang yang tepat</string>
+    <string name="reach_friends">Jangkau Teman\nLebih Luas</string>
+    <string name="hello_again">Halo Lagi!</string>
+
+    <string name="register_title">Buat Akun</string>
+    <string name="register_subtitle">Bergabung dengan BeeTalk dan mulai terhubung</string>
+
+    <!-- Authentication -->
+    <string name="welcome_back">Selamat Datang Kembali!</string>
+    <string name="create_account">Buat Akun</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="confirm_password">Konfirmasi Kata Sandi</string>
+    <string name="login">Masuk</string>
+    <string name="register">Daftar</string>
+    <string name="dont_have_account">Belum punya akun? Daftar</string>
+    <string name="already_have_account">Sudah punya akun? Masuk</string>
+
+    <!-- Profile -->
+    <string name="full_name">Nama Lengkap</string>
+    <string name="birth_date">Tanggal Lahir (TTTT-BB-HH)</string>
+    <string name="gender">Jenis Kelamin</string>
+    <string name="male">Laki-laki</string>
+    <string name="female">Perempuan</string>
+    <string name="other">Lainnya</string>
+    <string name="bio">Bio</string>
+    <string name="bio_optional">Bio (Opsional)</string>
+
+    <!-- Navigation -->
+    <string name="nav_swipe">Geser</string>
+    <string name="nav_matches">Kecocokan</string>
+    <string name="nav_messages">Pesan</string>
+    <string name="nav_profile">Profil</string>
+
+    <!-- Actions -->
+    <string name="send">Kirim</string>
+    <string name="save">Simpan</string>
+    <string name="cancel">Batal</string>
+    <string name="delete">Hapus</string>
+    <string name="logout">Keluar</string>
+    <string name="edit_profile">Edit Profil</string>
+
+    <!-- Messages -->
+    <string name="login_successful">Masuk berhasil!</string>
+    <string name="registration_successful">Pendaftaran berhasil!</string>
+    <string name="logout_successful">Keluar berhasil!</string>
+    <string name="error_occurred">Terjadi kesalahan. Silakan coba lagi.</string>
+    <string name="its_a_match">Ini Jodoh!</string>
+    <string name="type_message">Ketik pesan...</string>
+
+    <string name="like">GELIK</string>
+    <string name="nope">TIDAK</string>
+    <string name="discovery_preferences">Preferensi Penemuan</string>
+    <string name="account_settings">Pengaturan Akun</string>
+    <string name="choose_language">Pilih Bahasa</string>
+    <string name="indonesia">Indonesia</string>
+    <string name="english">Inggris</string>
+    <string name="thailand">Thailand</string>
+    <string name="swipes_greeting">Temukan Pasangan Sempurnamu ✨</string>
+    <string name="super_likes_left">%1$d ⭐ Super Likes tersisa hari ini</string>
+    <string name="watch_ad_plus">📺 Tonton Iklan untuk Plus</string>
+    <string name="no_more_people">Tidak ada orang lagi</string>
+    <string name="try_broadening">Coba perluas pengaturan penemuanmu!</string>
+    <string name="signin_subtitle">Masuk untuk melanjutkan perjalananmu</string>
+    <string name="enter_email">Masukkan email Anda</string>
+    <string name="enter_password">Masukkan kata sandi Anda</string>
+    <string name="forgot_password_q">Lupa Kata Sandi?</string>
+    <string name="dont_have_account_q">Belum punya akun? </string>
+    <string name="chat">Obrolan</string>
+    <string name="your_preferences">Preferensi Anda</string>
+    <string name="customize_preferences">Sesuaikan siapa yang ingin Anda temui</string>
+    <string name="interested_in">Tertarik Pada</string>
+    <string name="men">👨 Pria</string>
+    <string name="women">👩 Wanita</string>
+    <string name="both">🌈 Keduanya</string>
+    <string name="age_range">Rentang Usia</string>
+    <string name="max_distance">Jarak Maksimum</string>
+    <string name="location_info">Kami menggunakan lokasi Anda untuk menunjukkan jodoh terdekat. Posisi tepat Anda tidak pernah dibagikan.</string>
+    <string name="location_disabled">Lokasi tidak diaktifkan</string>
+    <string name="location">Lokasi</string>
+    <string name="your_full_name">Nama lengkap Anda</string>
+    <string name="min_8_chars">Min. 8 karakter</string>
+    <string name="re_enter_password">Masukkan kembali kata sandi</string>
+    <string name="select_birth_date">Pilih tanggal lahir</string>
+    <string name="male_symbol">♂ Pria</string>
+    <string name="female_symbol">♀ Wanita</string>
+    <string name="other_symbol">⚧ Lainnya</string>
+    <string name="bio_hint">Ceritakan sesuatu tentang dirimu...</string>
+    <string name="agree_to_the">Saya setuju dengan </string>
+    <string name="terms">Ketentuan</string>
+    <string name="and_symbol"> &amp; </string>
+    <string name="already_have_account_q">Sudah punya akun? </string>
+    <string name="change_password">Ubah Kata Sandi</string>
+    <string name="current_password">Kata Sandi Saat Ini</string>
+    <string name="new_password">Kata Sandi Baru</string>
+    <string name="confirm_new_password">Konfirmasi Kata Sandi Baru</string>
+    <string name="update_password">Perbarui Kata Sandi</string>
+    <string name="advanced">LANJUTAN</string>
+    <string name="danger_zone">Zona Bahaya</string>
+    <string name="delete_account_info">Menghapus akun Anda akan menghapus secara permanen semua kecocokan, pesan, foto, dan informasi profil Anda dari BeeTalk. Ini tidak dapat dibatalkan.</string>
+    <string name="delete_account_btn">Hapus Akun Saya</string>
+    <string name="yrs_unit">%1$d - %2$d thn</string>
+    <string name="km_unit">%1$d km</string>
+    <string name="save_preferences">Simpan Preferensi</string>
+    <string name="app_name_full">BeeTalk Lite</string>
+    <string name="app_tagline">Bridging Distance, Uniting Hearts.</string>
+    <string name="skip">Lewati</string>
+
+    <string name="reset_code_instruction">Kami akan mengirimkan kode reset ke email Anda</string>
+    <string name="forgot_password_details">Masukkan alamat email yang Anda gunakan saat bergabung dan kami akan mengirimkan tautan reset.</string>
+    <string name="send_reset_code">Kirim Kode Reset</string>
+    <string name="remember_password_q">Ingat kata sandi Anda? </string>
+    <string name="back_to_login">Kembali ke Masuk</string>
+
+    <string name="verify_your_email">Verifikasi Email Anda</string>
+    <string name="check_inbox_otp">Periksa masuk Anda untuk kode 6-digit</string>
+    <string name="sent_code_to">Kami mengirimkan kode ke</string>
+    <string name="enter_6_digit">Masukkan Kode 6-digit</string>
+    <string name="resend_timer">Kirim ulang tersedia dalam %1$det</string>
+    <string name="verify_code">Verifikasi Kode</string>
+    <string name="didnt_receive_code">Tidak menerima kode? </string>
+    <string name="resend">Kirim Ulang</string>
+
+    <string name="create_secure_password">Buat kata sandi yang kuat dan aman</string>
+    <string name="password_length_instruction">Kata sandi baru Anda harus minimal 8 karakter.</string>
+    <string name="re_enter_new_password">Masukkan kembali kata sandi baru Anda</string>
+    <string name="set_new_password_btn">Setel Kata Sandi Baru</string>
+
+    <string name="check_your_email">Periksa Email Anda</string>
+    <string name="enter_6_digit_sent">Masukkan kode 6-digit yang kami kirimkan</string>
+    <string name="enter_6_digit_details">Silakan masukkan kode verifikasi 6-digit yang dikirimkan ke alamat email Anda.</string>
+    <string name="verification_code_label">Kode Verifikasi</string>
+
+    <string name="error_email_required">Silakan masukkan email Anda</string>
+    <string name="error_invalid_email">Silakan masukkan email yang valid</string>
+    <string name="success_code_sent">Kode reset terkirim! Periksa email Anda.</string>
+    <string name="error_send_code_failed">Gagal mengirim kode reset</string>
+    <string name="error_otp_required">Silakan masukkan OTP</string>
+    <string name="error_otp_invalid">OTP harus 6 digit</string>
+    <string name="success_otp_verified">OTP terverifikasi! Setel kata sandi baru Anda.</string>
+    <string name="error_verify_failed">Verifikasi gagal</string>
+    <string name="success_code_resent">Kode dikirim ulang! Periksa email Anda.</string>
+    <string name="error_resend_failed">Gagal mengirim ulang kode</string>
+
+    <string name="error_missing_data">Galat: Data hilang</string>
+    <string name="error_password_required">Silakan masukkan kata sandi baru</string>
+    <string name="error_password_min_length">Kata sandi harus minimal 8 karakter</string>
+    <string name="error_passwords_dont_match">Kata sandi tidak cocok</string>
+    <string name="success_password_reset">Kata sandi berhasil disetel ulang! Silakan masuk.</string>
+    <string name="error_password_reset_failed">Gagal menyetel ulang kata sandi</string>
+
+    <string name="loading_verifying_code">Memverifikasi Kode…</string>
+    <string name="loading_saving_password">Menyimpan Kata Sandi…</string>
+    <string name="loading_please_wait">Tunggu sebentar</string>
+
+    <string name="your_photos">Foto Anda</string>
+    <string name="add_photo_instruction">Tambahkan minimal 1 foto untuk melanjutkan</string>
+    <string name="photo_tips_title">Tips Foto Terbaik</string>
+    <string name="photo_tips_content">• Gunakan foto wajah yang jelas\n• Pilih pencahayaan yang baik\n• Hindari foto grup sebagai foto utama</string>
+    <string name="uploading">Mengunggah...</string>
+    <string name="enable_location">Aktifkan Akses Lokasi</string>
+    <string name="location_safety_tip">Lokasi persis Anda tidak pernah dibagikan kepada pengguna lain</string>
+    <string name="location_required">Akses lokasi diperlukan untuk menggunakan BeeTalk</string>
+    <string name="messages">Pesan</string>
+    <string name="messages_tagline">Ngobrol dengan jodohmu 💬</string>
+    <string name="silence">Sepi...</string>
+    <string name="break_ice">Cairkan suasana dan mulai mengobrol dengan jodohmu!</string>
+    <string name="matches">Jodoh</string>
+    <string name="matches_tagline">Seseorang menunggumu ☕</string>
+    <string name="no_matches_yet">Belum Ada Jodoh</string>
+    <string name="soulmate_swipes">Terus geser! Belahan jiwamu hanya beberapa geseran saja ✨</string>
+
+    <string name="unblock">Buka Blokir</string>
+    <string name="super_likes_quota">%1$d ⭐ Super Like tersisa hari ini</string>
+    <string name="watch_ad_for_plus">📺 Tonton Iklan untuk Plus</string>
+    <string name="report_reason">Alasan Melaporkan</string>
+    <string name="inappropriate_photos">Foto Tidak Pantas</string>
+    <string name="inappropriate_messages">Pesan Tidak Pantas</string>
+    <string name="fake_profile">Profil Palsu / Spam</string>
+    <string name="harassment">Pelecehan</string>
+    <string name="other_reason">Lainnya</string>
+    <string name="spam">Spam</string>
+    <string name="submit_report">Kirim Laporan</string>
+    <string name="additional_details_hint">Detail tambahan (opsional)</string>
+    <string name="like_overlay">SUKA</string>
+    <string name="nope_overlay">TIDAK</string>
+
+    <string name="no_internet">Tidak Ada Koneksi Internet</string>
+    <string name="check_internet_try_again">Harap periksa koneksi internet Anda dan coba lagi.</string>
+    <string name="try_again">Coba Lagi</string>
+    <string name="exit">Keluar</string>
+    <string name="open_in_google_maps">Buka di google Maps</string>
+    <string name="logout_title">Tunggu! Ingin Pergi?</string>
+    <string name="logout_message">Apakah Anda yakin ingin keluar? Anda akan melewatkan jodoh baru!</string>
+    <string name="yes_logout">Ya, Keluar</string>
+    <string name="stay_on_beetalk">Tetap di BeeTalk</string>
+    <string name="location_required_title">Lokasi Diperlukan</string>
+    <string name="location_required_details">BeeTalk membutuhkan lokasi Anda untuk menunjukkan jodoh terdekat. Harap aktifkan akses lokasi untuk melanjutkan.</string>
+    <string name="enable_now">Aktifkan Sekarang</string>
+    <string name="not_now">Nanti Saja</string>
+    <string name="please_wait">Harap tunggu...</string>
+    <string name="processing_request">Memproses permintaan Anda</string>
+    <string name="user_actions">Tindakan Pengguna</string>
+    <string name="block_user">🚫 Blokir Pengguna</string>
+    <string name="report_user">🚨 Laporkan Pengguna</string>
+    <string name="loading_page">Memuat halaman…</string>
+    <string name="couldnt_load_page">Tidak dapat memuat halaman</string>
+    <string name="complete_your_profile">Lengkapi Profil Anda</string>
+    <string name="profile_setup_tagline">Mari atur profil Anda untuk memulai</string>
+    <string name="back">Kembali</string>
+    <string name="my_photos">Foto Saya</string>
+    <string name="add_up_to_6">(Tambah hingga 6)</string>
+    <string name="add">Tambah</string>
+    <string name="about_me">Tentang Saya</string>
+    <string name="basic_info">Info Dasar</string>
+    <string name="save_profile">Simpan Profil</string>
+    <string name="no_messages_yet">Belum ada pesan\nSapa dia! 👋</string>
+    <string name="no_blocked_users">Tidak Ada Pengguna Diblokir</string>
+    <string name="no_blocked_users_desc">Anda belum memblokir siapa pun</string>
+
+</resources>

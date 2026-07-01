@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="28dp"
+    android:background="@drawable/bg_dialog_loading">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_location"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        app:lottie_rawRes="@raw/location"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/location_required_title"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#2D2D2D"
+        android:fontFamily="@font/harabara"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/location_required_details"
+        android:textSize="14sp"
+        android:textColor="#757575"
+        android:fontFamily="@font/matcha"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginBottom="28dp" />
+
+    <Button
+        android:id="@+id/btn_enable_location"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="@string/enable_now"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/primary"
+        app:cornerRadius="26dp"
+        android:elevation="0dp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/btn_not_now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/not_now"
+        android:textSize="14sp"
+        android:textColor="#9E9E9E"
+        android:fontFamily="@font/matcha"
+        android:padding="8dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+</LinearLayout>

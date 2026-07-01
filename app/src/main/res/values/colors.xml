@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Primary Colors -->
+    <color name="primary">#F2BA3D</color>
+    <color name="primary_dark">#E2AA2F</color>
+    <color name="primary_light">#FAC65B</color>
+    
+    <!-- Accent Colors -->
+    <color name="accent">#4ECDC4</color>
+    <color name="accent_dark">#3DBDB5</color>
+    
+    <!-- Background Colors -->
+    <color name="background">#F7F7F7</color>
+    <color name="card_background">#FFFFFF</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#BDBDBD</color>
+    
+    <!-- Status Colors -->
+    <color name="success">#4CAF50</color>
+    <color name="error">#F44336</color>
+    <color name="warning">#FF9800</color>
+    
+    <!-- Additional Colors -->
+    <color name="gray">#9E9E9E</color>
+    <color name="red">#F44336</color>
+    <color name="orange">#FF9800</color>
+    
+    <!-- Message Bubble Colors -->
+    <color name="message_sent">#DCF8C6</color>
+    <color name="message_received">#FFFFFF</color>
+    
+    <!-- Aliases for Material Design -->
+    <color name="colorPrimary">#F2BA3D</color>
+    <color name="colorAccent">#F2BA3D</color>
+</resources>

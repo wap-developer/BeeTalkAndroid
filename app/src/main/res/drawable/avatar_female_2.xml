@@ -1,0 +1,69 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Background circle -->
+    <path
+        android:fillColor="#E8E8E8"
+        android:pathData="M50,50m-50,0a50,50 0,1 1,100 0a50,50 0,1 1,-100 0" />
+
+    <!-- Shirt / shoulders -->
+    <path
+        android:fillColor="#78909C"
+        android:pathData="M50,100 C50,100 15,100 15,82 C15,72 30,65 50,65 C70,65 85,72 85,82 C85,100 50,100 50,100Z" />
+
+    <!-- Neck -->
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M44,55 L44,65 L56,65 L56,55Z" />
+
+    <!-- Head -->
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M50,28 m-18,0 a18,20 0,1 1,36 0 a18,20 0,1 1,-36 0" />
+
+    <!-- Bob hair - top -->
+    <path
+        android:fillColor="#5D4037"
+        android:pathData="M28,34 Q26,12 50,10 Q74,12 72,34 Q72,22 50,18 Q28,22 28,34Z" />
+
+    <!-- Bob hair - left side -->
+    <path
+        android:fillColor="#5D4037"
+        android:pathData="M28,34 Q26,38 27,52 Q28,54 32,54 Q32,50 32,34Z" />
+
+    <!-- Bob hair - right side -->
+    <path
+        android:fillColor="#5D4037"
+        android:pathData="M72,34 Q74,38 73,52 Q72,54 68,54 Q68,50 68,34Z" />
+
+    <!-- Left ear -->
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M32,38 m-3,0 a3,4 0,1 1,6 0 a3,4 0,1 1,-6 0" />
+
+    <!-- Right ear -->
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M68,38 m-3,0 a3,4 0,1 1,6 0 a3,4 0,1 1,-6 0" />
+
+    <!-- Left eye -->
+    <path
+        android:fillColor="#3E2723"
+        android:pathData="M42,36 m-2.5,0 a2.5,3 0,1 1,5 0 a2.5,3 0,1 1,-5 0" />
+
+    <!-- Right eye -->
+    <path
+        android:fillColor="#3E2723"
+        android:pathData="M58,36 m-2.5,0 a2.5,3 0,1 1,5 0 a2.5,3 0,1 1,-5 0" />
+
+    <!-- Mouth -->
+    <path
+        android:fillColor="#E57373"
+        android:pathData="M45,46 Q50,50 55,46"
+        android:strokeWidth="1.2"
+        android:strokeColor="#E57373" />
+
+</vector>
