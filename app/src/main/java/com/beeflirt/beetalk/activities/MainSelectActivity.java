@@ -41,10 +41,8 @@ public class MainSelectActivity extends BaseActivity {
 
         bannerAds = findViewById(R.id.bannerAds);
 
-        if (SettingAds.ADS_MAINSELECT.equals("1")) {
-            Ads.ShowBanner(this, bannerAds, SettingAds.PLACEMENT_BANNER_MAIN_SELECT);
-            Ads.LoadInterstitialAds(this, SettingAds.PLACEMENT_INTERSTITIAL_MAIN_SELECT);
-        }
+        Ads.ShowBanner(this, bannerAds, SettingAds.PLACEMENT_BANNER_MAIN_SELECT);
+        Ads.LoadInterstitialAds(this, SettingAds.PLACEMENT_INTERSTITIAL_MAIN_SELECT);
 
         rateOnclick();
         nextOnclick();
@@ -62,17 +60,11 @@ public class MainSelectActivity extends BaseActivity {
 
     private void nextOnclick() {
         next.setOnClickListener(v -> {
-            if (SettingAds.INTERS_MAINSELECT.equals("1")) {
-                Ads.ShowInterstitialAds(MainSelectActivity.this, SettingAds.PLACEMENT_INTERSTITIAL_MAIN_SELECT, () -> {
-                    Intent i = new Intent(MainSelectActivity.this, AppActivity.class);
-                    startActivity(i);
-                    finish();
-                });
-            } else {
+            Ads.ShowInterstitialAds(MainSelectActivity.this, SettingAds.PLACEMENT_INTERSTITIAL_MAIN_SELECT, () -> {
                 Intent i = new Intent(MainSelectActivity.this, AppActivity.class);
                 startActivity(i);
                 finish();
-            }
+            });
         });
     }
 }

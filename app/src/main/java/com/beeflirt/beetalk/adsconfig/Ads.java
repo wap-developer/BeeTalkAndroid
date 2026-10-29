@@ -1,12 +1,7 @@
 package com.beeflirt.beetalk.adsconfig;
 
-import static com.beeflirt.beetalk.adsconfig.SettingAds.ADMOB_BANNER;
-import static com.beeflirt.beetalk.adsconfig.SettingAds.APPLOVIN_BANNER;
 import static com.beeflirt.beetalk.adsconfig.SettingAds.CHILD_DIRECT_GDPR;
-import static com.beeflirt.beetalk.adsconfig.SettingAds.NETWORK_ADMOB;
-import static com.beeflirt.beetalk.adsconfig.SettingAds.NETWORK_APPLOVIN;
 import static com.beeflirt.beetalk.adsconfig.SettingAds.URL_DATA;
-import static com.beeflirt.beetalk.adsconfig.SettingAds.WATERFALL_PRIORITY;
 
 import android.app.Activity;
 import android.util.Log;
@@ -17,12 +12,19 @@ import com.beeflirt.beetalk.ads.GDPR;
 import com.beeflirt.beetalk.ads.Interstitial;
 import com.beeflirt.beetalk.ads.Rewarded;
 import com.beeflirt.beetalk.ads.SmallBanner;
+import com.beeflirt.beetalk.utils.PremiumManager;
 
 public class Ads {
     public static String APPID;
     public static String DATA;
 
     private static final String TAG = "Ads";
+
+    /** Premium users: skip banner + interstitial. Rewarded stays (opt-in earn). */
+    private static boolean isAdFree(Activity activity) {
+        if (activity == null) return false;
+        return PremiumManager.getInstance(activity).isAdFree();
+    }
 
     public static void CheckAds(Activity activity) {
         if (URL_DATA.startsWith("http")) {
@@ -47,29 +49,36 @@ public class Ads {
      * Cek toggle per network dari PLACEMENTS map.
      */
     public static void ShowBanner(Activity activity, RelativeLayout layAds, String placement) {
-        boolean applovinOn = SettingAds.isPlacementEnabled(placement, NETWORK_APPLOVIN);
-        boolean admobOn = SettingAds.isPlacementEnabled(placement, NETWORK_ADMOB);
+        if (isAdFree(activity)) {
+            Log.d(TAG, "ShowBanner[" + placement + "]: premium ad-free, skip");
+            if (layAds != null) layAds.setVisibility(android.view.View.GONE);
+            return;
+        }
+
+        boolean applovinOn = SettingAds.isPlacementEnabled(placement, SettingAds.NETWORK_APPLOVIN);
+        boolean admobOn = SettingAds.isPlacementEnabled(placement, SettingAds.NETWORK_ADMOB);
 
         if (!applovinOn && !admobOn) {
             Log.d(TAG, "ShowBanner[" + placement + "]: both disabled, skip");
+            if (layAds != null) layAds.setVisibility(android.view.View.GONE);
             return;
         }
 
         if (applovinOn && admobOn) {
             // Waterfall: try priority first, fallback the other
-            if ("admob".equals(WATERFALL_PRIORITY)) {
+            if ("admob".equals(SettingAds.WATERFALL_PRIORITY)) {
                 Log.d(TAG, "ShowBanner[" + placement + "]: AdMob → fallback AppLovin");
-                SmallBanner.AdmobWithApplovinBackup(activity, layAds, ADMOB_BANNER, APPLOVIN_BANNER);
+                SmallBanner.AdmobWithApplovinBackup(activity, layAds, SettingAds.ADMOB_BANNER, SettingAds.APPLOVIN_BANNER);
             } else {
                 Log.d(TAG, "ShowBanner[" + placement + "]: AppLovin → fallback AdMob");
-                SmallBanner.ApplovinMaxWithAdmobBackup(activity, layAds, APPLOVIN_BANNER, ADMOB_BANNER);
+                SmallBanner.ApplovinMaxWithAdmobBackup(activity, layAds, SettingAds.APPLOVIN_BANNER, SettingAds.ADMOB_BANNER);
             }
         } else if (applovinOn) {
             Log.d(TAG, "ShowBanner[" + placement + "]: AppLovin only");
-            SmallBanner.ApplovinMax(activity, layAds, APPLOVIN_BANNER);
+            SmallBanner.ApplovinMax(activity, layAds, SettingAds.APPLOVIN_BANNER);
         } else {
             Log.d(TAG, "ShowBanner[" + placement + "]: AdMob only");
-            SmallBanner.Admob(activity, layAds, ADMOB_BANNER);
+            SmallBanner.Admob(activity, layAds, SettingAds.ADMOB_BANNER);
         }
     }
 
@@ -84,19 +93,27 @@ public class Ads {
     }
 
     public static void LoadInterstitialAds(Activity activity, String placement) {
+        if (isAdFree(activity)) {
+            Log.d(TAG, "LoadInterstitialAds[" + placement + "]: premium ad-free, skip");
+            return;
+        }
         if (!SettingAds.shouldShow(placement)) {
             Log.d(TAG, "LoadInterstitialAds[" + placement + "]: disabled, skip preload");
             return;
         }
-        Interstitial.loadAds(activity);
+        Interstitial.loadAds(activity, placement);
     }
 
     @Deprecated
     public static void LoadInterstitialAds(Activity activity) {
-        Interstitial.loadAds(activity);
+        Interstitial.loadAds(activity, SettingAds.PLACEMENT_INTERSTITIAL_MAIN_SELECT);
     }
 
     public static void ShowInterstitialAds(Activity activity, String placement) {
+        if (isAdFree(activity)) {
+            Log.d(TAG, "ShowInterstitialAds[" + placement + "]: premium ad-free, skip");
+            return;
+        }
         if (!SettingAds.shouldShow(placement)) {
             Log.d(TAG, "ShowInterstitialAds[" + placement + "]: disabled, skip");
             return;
@@ -106,6 +123,11 @@ public class Ads {
     }
 
     public static void ShowInterstitialAds(Activity activity, String placement, Interstitial.DismissCallback callback) {
+        if (isAdFree(activity)) {
+            Log.d(TAG, "ShowInterstitialAds[" + placement + "]: premium ad-free, callback");
+            if (callback != null) callback.onDismissed();
+            return;
+        }
         if (!SettingAds.shouldShow(placement)) {
             Log.d(TAG, "ShowInterstitialAds[" + placement + "]: disabled, callback langsung");
             if (callback != null) callback.onDismissed();
@@ -130,12 +152,12 @@ public class Ads {
             Log.d(TAG, "LoadRewardsAds[" + placement + "]: disabled, skip");
             return;
         }
-        Rewarded.loadAds(activity);
+        Rewarded.loadAds(activity, placement);
     }
 
     @Deprecated
     public static void LoadRewardsAds(Activity activity) {
-        Rewarded.loadAds(activity);
+        Rewarded.loadAds(activity, SettingAds.PLACEMENT_REWARDED_SUPER_LIKE);
     }
 
     public static void ShowRewardsAds(Activity activity, String placement, Rewarded.RewardCallback callback) {

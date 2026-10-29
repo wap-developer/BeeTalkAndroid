@@ -2,13 +2,13 @@ package com.beeflirt.beetalk.utils;
 
 public class Constants {
     // API Configuration
-    public static final String BASE_URL = "https://beetalk.xuaxin.org/api/"; // For emulator with php spark serve
-    // public static final String BASE_URL = "http://192.168.2.35:8000/api/"; // For real device - change IP
-    
+    // public static final String BASE_URL = "https://beetalk.xuaxin.org/api/"; // production
+    public static final String BASE_URL = "http://192.168.2.57:8080/api/"; // local device/dev
+
     // Image/Upload Base URL (without /api/)
-    public static final String IMAGE_BASE_URL = "https://beetalk.xuaxin.org/"; // For emulator
-    // public static final String IMAGE_BASE_URL = "http://192.168.2.35:8000/"; // For real device - change IP
-    
+    // public static final String IMAGE_BASE_URL = "https://beetalk.xuaxin.org/"; // production
+    public static final String IMAGE_BASE_URL = "http://192.168.2.57:8080/"; // local device/dev
+
     // SharedPreferences Keys
     public static final String PREF_NAME = "BeeTalkLite_Prefs";
     public static final String LEGACY_PREF_NAME = "TinderKW_Prefs"; // Old name, used for migration

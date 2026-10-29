@@ -247,6 +247,102 @@
             <!-- ACTION BUTTONS CARD                          -->
             <!-- ============================================ -->
 
+            <!-- Who likes you -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_who_liked"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FF6B6B"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="18dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_person"
+                        app:tint="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/tv_who_liked_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="14dp"
+                        android:text="Who likes you"
+                        android:textSize="15sp"
+                        android:textColor="@android:color/white"
+                        android:fontFamily="@font/harabara" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/baseline_chevron_right_24"
+                        app:tint="#FFFFFFCC" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Premium -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_premium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#F2BA3D"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="18dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_person"
+                        app:tint="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/tv_premium_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="14dp"
+                        android:text="BeeTalk Premium"
+                        android:textSize="15sp"
+                        android:textColor="@android:color/white"
+                        android:fontFamily="@font/harabara" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/baseline_chevron_right_24"
+                        app:tint="#FFFFFFCC" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
             <!-- My Gallery -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_gallery"

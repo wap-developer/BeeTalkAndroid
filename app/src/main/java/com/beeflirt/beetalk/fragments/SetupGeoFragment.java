@@ -85,18 +85,12 @@ public class SetupGeoFragment extends Fragment {
             v.animate().scaleX(0.96f).scaleY(0.96f).setDuration(80)
                     .withEndAction(() -> v.animate().scaleX(1f).scaleY(1f).setDuration(80).start())
                     .start();
-            if (SettingAds.ADS_MAINSELECT.equals("1")) {
-                Ads.ShowInterstitialAds(getActivity(), SettingAds.PLACEMENT_INTERSTITIAL_GEO, () -> {
-                    requestLocationPermission();
-                });
-            } else {
+            Ads.ShowInterstitialAds(getActivity(), SettingAds.PLACEMENT_INTERSTITIAL_GEO, () -> {
                 requestLocationPermission();
-            }
+            });
         });
 
-        if (SettingAds.ADS_GEO.equals("1")){
-            Ads.LoadInterstitialAds(getActivity(), SettingAds.PLACEMENT_INTERSTITIAL_GEO);
-        }
+        Ads.LoadInterstitialAds(getActivity(), SettingAds.PLACEMENT_INTERSTITIAL_GEO);
 
         // Auto-check if permission already granted
         checkLocationPermission();

@@ -72,11 +72,14 @@ public class LanguageActivity extends BaseActivity {
 
     private void updateLanguageButtonText() {
         String lang = LocaleHelper.getLanguage(this);
-        String langText = "English";
-        if (lang.equals("in")) langText = "Indonesia";
-        else if (lang.equals("th")) langText = "Thailand";
-        
-        languageBtn.setText("Language: " + langText);
+        String langText = getString(R.string.english);
+        if ("in".equals(lang)) {
+            langText = getString(R.string.indonesia);
+        } else if ("th".equals(lang)) {
+            langText = getString(R.string.thailand);
+        }
+
+        languageBtn.setText(getString(R.string.language_format, langText));
     }
 
     private void showLanguageDialog() {

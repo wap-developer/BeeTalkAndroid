@@ -14,15 +14,17 @@
         android:background="@drawable/bg_rounded_bottom"
         android:backgroundTint="@color/colorPrimary"
         android:orientation="vertical"
-        android:paddingBottom="50dp"
+        android:paddingBottom="36dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:layout_marginTop="30dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null"
             android:src="@drawable/ic_choose_character" />
 
         <TextView
@@ -30,11 +32,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/matcha"
             android:text="@string/title_choose"
             android:textAlignment="center"
             android:textColor="#404040"
-            android:textSize="15dp"
-            android:fontFamily="@font/matcha"/>
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/languageTitle"
@@ -42,17 +44,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/harabara"
             android:text="@string/language_title"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/harabara"/>
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="56dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:background="@color/white"
             app:cardCornerRadius="20dp"
             app:cardElevation="4dp">
@@ -60,7 +62,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp">
+                android:layout_margin="4dp">
 
                 <TextView
                     android:id="@+id/languageBtn"
@@ -70,12 +72,14 @@
                     android:background="@drawable/shape_button_orange"
                     android:backgroundTint="@color/colorPrimary"
                     android:gravity="center"
+                    android:paddingStart="20dp"
                     android:paddingLeft="20dp"
+                    android:paddingEnd="20dp"
                     android:paddingRight="20dp"
-                    android:text="Language: English"
+                    android:text="@string/language_title"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="17dp"
+                    android:textSize="17sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -87,10 +91,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:text="@string/privacy_policy"
-            android:textStyle="bold"
-            android:fontFamily=""/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -98,11 +101,10 @@
         android:id="@+id/btnNext"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/colorPrimary"
-        android:layout_marginTop="30dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/bannerAds"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -111,24 +113,20 @@
             android:layout_width="41dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
+            android:contentDescription="@string/next_btn"
             android:src="@drawable/ic_arrow"
             app:tint="@color/white" />
 
     </androidx.cardview.widget.CardView>
 
     <RelativeLayout
+        android:id="@+id/bannerAds"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="30dp">
-
-        <RelativeLayout
-            android:id="@+id/bannerAds"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:background="@color/white"/>
-
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

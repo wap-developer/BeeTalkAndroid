@@ -5,6 +5,7 @@
     <!-- Welcome -->
     <string name="title_choose">Are you confused about \nthe language in this application? \nDon\'t Worry.</string>
     <string name="language_title">Choose Language on Below</string>
+    <string name="language_format">Language: %s</string>
     <string name="privacy_policy">Privacy Policy</string>
 
     <string name="greetings">Connect with new people in the world</string>

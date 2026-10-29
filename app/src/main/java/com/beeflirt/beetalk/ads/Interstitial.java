@@ -1,14 +1,13 @@
 package com.beeflirt.beetalk.ads;
 
 import static com.beeflirt.beetalk.adsconfig.SettingAds.INTERVAL_CAPS;
-import static com.beeflirt.beetalk.adsconfig.SettingAds.MAIN_ADS_INTERTITIAL;
-import static com.beeflirt.beetalk.adsconfig.SettingAds.MAIN_ADS_INTERTITIAL_BACKUP;
-import static com.beeflirt.beetalk.adsconfig.SettingAds.SELECT_MAIN_ADS;
 
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+
+import com.beeflirt.beetalk.adsconfig.SettingAds;
 
 import androidx.annotation.NonNull;
 
@@ -44,7 +43,7 @@ public class Interstitial {
     // LOAD — entry point utama
     // ===================================================================
 
-    public static void loadAds(Activity activity) {
+    public static void loadAds(Activity activity, String placement) {
         if (isLoading) {
             Log.d(TAG, "Ad sudah loading, skip...");
             return;
@@ -52,27 +51,30 @@ public class Interstitial {
         isLoading = true;
         isInterstitialReady = false;
 
-        switch (SELECT_MAIN_ADS) {
-            case "APPLOVIN":
-                // AppLovin saja, tidak ada backup
-                LoadApplovinMax(activity, MAIN_ADS_INTERTITIAL, null);
-                break;
-            case "ADMOB":
-                // AdMob saja, tidak ada backup
-                LoadAdmob(activity, MAIN_ADS_INTERTITIAL, null);
-                break;
-            case "APPLOVIN_ADMOB":
-                // AppLovin primary → AdMob backup jika gagal
-                LoadApplovinMax(activity, MAIN_ADS_INTERTITIAL, MAIN_ADS_INTERTITIAL_BACKUP);
-                break;
-            case "ADMOB_APPLOVIN":
-                // AdMob primary → AppLovin backup jika gagal
-                LoadAdmob(activity, MAIN_ADS_INTERTITIAL, MAIN_ADS_INTERTITIAL_BACKUP);
-                break;
-            default:
-                Log.w(TAG, "loadAds: SELECT_MAIN_ADS tidak dikenal → " + SELECT_MAIN_ADS);
-                isLoading = false;
+        boolean applovinOn = SettingAds.isPlacementEnabled(placement, SettingAds.NETWORK_APPLOVIN);
+        boolean admobOn = SettingAds.isPlacementEnabled(placement, SettingAds.NETWORK_ADMOB);
+
+        if (applovinOn && admobOn) {
+            if ("admob".equals(SettingAds.WATERFALL_PRIORITY)) {
+                Log.d(TAG, "loadAds[" + placement + "]: AdMob primary → AppLovin backup");
+                LoadAdmob(activity, SettingAds.ADMOB_INTERSTITIAL, SettingAds.APPLOVIN_INTERSTITIAL);
+            } else {
+                Log.d(TAG, "loadAds[" + placement + "]: AppLovin primary → AdMob backup");
+                LoadApplovinMax(activity, SettingAds.APPLOVIN_INTERSTITIAL, SettingAds.ADMOB_INTERSTITIAL);
+            }
+        } else if (admobOn) {
+            Log.d(TAG, "loadAds[" + placement + "]: AdMob only");
+            LoadAdmob(activity, SettingAds.ADMOB_INTERSTITIAL, null);
+        } else if (applovinOn) {
+            Log.d(TAG, "loadAds[" + placement + "]: AppLovin only");
+            LoadApplovinMax(activity, SettingAds.APPLOVIN_INTERSTITIAL, null);
+        } else {
+            isLoading = false;
         }
+    }
+
+    public static void loadAds(Activity activity) {
+        loadAds(activity, SettingAds.PLACEMENT_INTERSTITIAL_MAIN_SELECT);
     }
 
     // ===================================================================
@@ -252,75 +254,51 @@ public class Interstitial {
             return false;
         }
 
-        switch (SELECT_MAIN_ADS) {
-            case "APPLOVIN":
-            case "APPLOVIN_ADMOB":
-                if (interstitialAd != null && interstitialAd.isReady()) {
-                    Log.d(TAG, "Showing AppLovin interstitial (with callback)");
-                    // Override listener sementara untuk tangkap dismiss
-                    interstitialAd.setListener(new com.applovin.mediation.MaxAdListener() {
-                        @Override public void onAdLoaded(@NonNull MaxAd ad) {}
-                        @Override public void onAdDisplayed(@NonNull MaxAd ad) { isInterstitialReady = false; }
-                        @Override public void onAdClicked(@NonNull MaxAd ad) {}
-                        @Override public void onAdLoadFailed(@NonNull String s, @NonNull MaxError e) {}
-                        @Override public void onAdDisplayFailed(@NonNull MaxAd ad, @NonNull MaxError e) {
-                            isInterstitialReady = false;
-                            if (callback != null) callback.onDismissed();
-                            if (!activity.isFinishing() && !activity.isDestroyed()) loadAds(activity);
-                        }
-                        @Override public void onAdHidden(@NonNull MaxAd ad) {
-                            if (callback != null) callback.onDismissed();
-                            if (!activity.isFinishing() && !activity.isDestroyed()) loadAds(activity);
-                        }
-                    });
-                    interstitialAd.showAd(activity);
-                    lastShownTime = System.currentTimeMillis();
-                } else if (SELECT_MAIN_ADS.equals("APPLOVIN_ADMOB") && mInterstitialAd != null) {
-                    Log.d(TAG, "AppLovin tidak ready, showing fallback AdMob interstitial");
-                    showAdMobInterstitial(activity, callback);
-                } else {
-                    Log.d(TAG, "AppLovin interstitial belum ready saat show");
-                    if (callback != null) callback.onDismissed();
-                }
-                break;
-
-            case "ADMOB":
-            case "ADMOB_APPLOVIN":
-                if (mInterstitialAd != null) {
-                    Log.d(TAG, "Showing AdMob interstitial (with callback)");
-                    showAdMobInterstitial(activity, callback);
-                } else if (SELECT_MAIN_ADS.equals("ADMOB_APPLOVIN") && interstitialAd != null && interstitialAd.isReady()) {
-                    Log.d(TAG, "AdMob tidak ready, showing fallback AppLovin interstitial");
-                    // Tampilkan AppLovin
-                    interstitialAd.setListener(new com.applovin.mediation.MaxAdListener() {
-                        @Override public void onAdLoaded(@NonNull MaxAd ad) {}
-                        @Override public void onAdDisplayed(@NonNull MaxAd ad) { isInterstitialReady = false; }
-                        @Override public void onAdClicked(@NonNull MaxAd ad) {}
-                        @Override public void onAdLoadFailed(@NonNull String s, @NonNull MaxError e) {}
-                        @Override public void onAdDisplayFailed(@NonNull MaxAd ad, @NonNull MaxError e) {
-                            isInterstitialReady = false;
-                            if (callback != null) callback.onDismissed();
-                            if (!activity.isFinishing() && !activity.isDestroyed()) loadAds(activity);
-                        }
-                        @Override public void onAdHidden(@NonNull MaxAd ad) {
-                            if (callback != null) callback.onDismissed();
-                            if (!activity.isFinishing() && !activity.isDestroyed()) loadAds(activity);
-                        }
-                    });
-                    interstitialAd.showAd(activity);
-                    lastShownTime = System.currentTimeMillis();
-                } else {
-                    Log.d(TAG, "AdMob interstitial null saat show");
-                    if (callback != null) callback.onDismissed();
-                }
-                break;
-
-            default:
-                Log.d(TAG, "showInters: mode tidak dikenal → " + SELECT_MAIN_ADS);
-                if (callback != null) callback.onDismissed();
+        if ("admob".equals(SettingAds.WATERFALL_PRIORITY)) {
+            if (mInterstitialAd != null) {
+                Log.d(TAG, "Showing AdMob interstitial (priority: admob)");
+                showAdMobInterstitial(activity, callback);
+                return true;
+            } else if (interstitialAd != null && interstitialAd.isReady()) {
+                Log.d(TAG, "AdMob not ready, fallback showing AppLovin interstitial");
+                showAppLovinInterstitial(activity, callback);
+                return true;
+            }
+        } else {
+            if (interstitialAd != null && interstitialAd.isReady()) {
+                Log.d(TAG, "Showing AppLovin interstitial (priority: applovin)");
+                showAppLovinInterstitial(activity, callback);
+                return true;
+            } else if (mInterstitialAd != null) {
+                Log.d(TAG, "AppLovin not ready, fallback showing AdMob interstitial");
+                showAdMobInterstitial(activity, callback);
+                return true;
+            }
         }
 
-        return true;
+        Log.d(TAG, "No interstitial ready to show");
+        if (callback != null) callback.onDismissed();
+        return false;
+    }
+
+    private static void showAppLovinInterstitial(Activity activity, DismissCallback callback) {
+        interstitialAd.setListener(new com.applovin.mediation.MaxAdListener() {
+            @Override public void onAdLoaded(@NonNull MaxAd ad) {}
+            @Override public void onAdDisplayed(@NonNull MaxAd ad) { isInterstitialReady = false; }
+            @Override public void onAdClicked(@NonNull MaxAd ad) {}
+            @Override public void onAdLoadFailed(@NonNull String s, @NonNull MaxError e) {}
+            @Override public void onAdDisplayFailed(@NonNull MaxAd ad, @NonNull MaxError e) {
+                isInterstitialReady = false;
+                if (callback != null) callback.onDismissed();
+                if (!activity.isFinishing() && !activity.isDestroyed()) loadAds(activity);
+            }
+            @Override public void onAdHidden(@NonNull MaxAd ad) {
+                if (callback != null) callback.onDismissed();
+                if (!activity.isFinishing() && !activity.isDestroyed()) loadAds(activity);
+            }
+        });
+        interstitialAd.showAd(activity);
+        lastShownTime = System.currentTimeMillis();
     }
 
     // ===================================================================

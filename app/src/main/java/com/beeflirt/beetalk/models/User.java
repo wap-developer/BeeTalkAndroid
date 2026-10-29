@@ -26,7 +26,16 @@ public class User {
 
     @SerializedName("last_seen")
     private String lastSeen;
-    
+
+    @SerializedName("is_premium")
+    private int isPremium;
+
+    @SerializedName("premium_until")
+    private String premiumUntil;
+
+    @SerializedName("premium_source")
+    private String premiumSource;
+
     public User() {
     }
     
@@ -93,5 +102,29 @@ public class User {
 
     public void setLastSeen(String lastSeen) {
         this.lastSeen = lastSeen;
+    }
+
+    public boolean isPremium() {
+        return isPremium == 1;
+    }
+
+    public void setIsPremium(int isPremium) {
+        this.isPremium = isPremium;
+    }
+
+    public String getPremiumUntil() {
+        return premiumUntil;
+    }
+
+    public void setPremiumUntil(String premiumUntil) {
+        this.premiumUntil = premiumUntil;
+    }
+
+    public String getPremiumSource() {
+        return premiumSource;
+    }
+
+    public void setPremiumSource(String premiumSource) {
+        this.premiumSource = premiumSource;
     }
 }

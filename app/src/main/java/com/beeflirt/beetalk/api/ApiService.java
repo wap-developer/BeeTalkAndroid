@@ -119,6 +119,20 @@ public interface ApiService {
     @POST("swipe/undo")
     Call<ApiResponse<Map<String, Object>>> undoSwipe();
 
+    // ==================== PREMIUM ====================
+
+    @GET("premium/entitlements")
+    Call<ApiResponse<Map<String, Object>>> getEntitlements();
+
+    @GET("premium/who-liked-me")
+    Call<ApiResponse<Map<String, Object>>> getWhoLikedMe();
+
+    @POST("premium/verify-purchase")
+    Call<ApiResponse<Map<String, Object>>> verifyPurchase(@Body JsonObject body);
+
+    @POST("premium/boost")
+    Call<ApiResponse<Map<String, Object>>> activateBoost();
+
     // ==================== NOTIFICATIONS ====================
 
     @POST("notifications/register-token")

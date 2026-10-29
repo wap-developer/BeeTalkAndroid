@@ -11,13 +11,13 @@
         android:id="@+id/logo_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-90dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.38">
 
         <!-- App Icon with circular background -->
         <androidx.cardview.widget.CardView
@@ -68,20 +68,18 @@
         android:id="@+id/progress"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_above="@+id/companyName"
-        android:layout_centerHorizontal="true"
         android:src="@drawable/loader"
+        app:layout_constraintTop_toBottomOf="@+id/logo_container"
         app:layout_constraintBottom_toTopOf="@+id/companyName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.75" />
 
     <!-- Version text -->
     <TextView
         android:id="@+id/companyName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:text="@string/company_name"
         android:textColor="#AEAEAE"

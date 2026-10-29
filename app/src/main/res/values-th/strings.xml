@@ -5,6 +5,7 @@
     <!-- Welcome -->
     <string name="title_choose">คุณสับสนกับ \nภาษาในแอปพลิเคชันนี้หรือไม่? \nไม่ต้องกังวล</string>
     <string name="language_title">เลือกภาษาจากด้านล่าง</string>
+    <string name="language_format">ภาษา: %s</string>
     <string name="privacy_policy">นโยบายความเป็นส่วนตัว</string>
 
     <string name="greetings">เชื่อมต่อกับผู้คนใหม่ๆ ในโลก</string>

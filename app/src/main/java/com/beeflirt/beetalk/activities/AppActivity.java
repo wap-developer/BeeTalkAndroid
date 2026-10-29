@@ -35,10 +35,8 @@ public class AppActivity extends BaseActivity {
         signupBtn = findViewById(R.id.signupBtn);
         back = findViewById(R.id.back);
 
-        if (SettingAds.ADS_APPACTIVITY.equals("1")){
-            Ads.ShowBanner(this, bannerAds, SettingAds.PLACEMENT_BANNER_APP_ACTIVITY);
-            Ads.LoadInterstitialAds(this, SettingAds.PLACEMENT_INTERSTITIAL_MAIN_SELECT);
-        }
+        Ads.ShowBanner(this, bannerAds, SettingAds.PLACEMENT_BANNER_APP_ACTIVITY);
+        Ads.LoadInterstitialAds(this, SettingAds.PLACEMENT_INTERSTITIAL_MAIN_SELECT);
 
         // Mark onboarding as completed when user reaches this screen
         // to prevent returning to LanguageActivity on next splash

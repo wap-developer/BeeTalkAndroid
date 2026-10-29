@@ -1,13 +1,11 @@
 package com.beeflirt.beetalk.ads;
 
-import static com.beeflirt.beetalk.adsconfig.SettingAds.MAIN_ADS_REWARDS;
-import static com.beeflirt.beetalk.adsconfig.SettingAds.MAIN_ADS_REWARDS_BACKUP;
-import static com.beeflirt.beetalk.adsconfig.SettingAds.SELECT_MAIN_ADS;
-
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+
+import com.beeflirt.beetalk.adsconfig.SettingAds;
 
 import androidx.annotation.NonNull;
 
@@ -46,7 +44,7 @@ public class Rewarded {
     // LOAD — entry point utama
     // ===================================================================
 
-    public static void loadAds(Activity activity) {
+    public static void loadAds(Activity activity, String placement) {
         if (isLoading) {
             Log.d(TAG, "Ad sudah dalam proses loading, skip...");
             return;
@@ -54,27 +52,30 @@ public class Rewarded {
         isLoading = true;
         isRewardedReady = false;
 
-        switch (SELECT_MAIN_ADS) {
-            case "APPLOVIN":
-                // AppLovin saja, tidak ada backup
-                LoadApplovinRewarded(activity, MAIN_ADS_REWARDS, null);
-                break;
-            case "ADMOB":
-                // AdMob saja, tidak ada backup
-                LoadAdmobRewarded(activity, MAIN_ADS_REWARDS, null);
-                break;
-            case "APPLOVIN_ADMOB":
-                // AppLovin primary → AdMob backup jika gagal
-                LoadApplovinRewarded(activity, MAIN_ADS_REWARDS, MAIN_ADS_REWARDS_BACKUP);
-                break;
-            case "ADMOB_APPLOVIN":
-                // AdMob primary → AppLovin backup jika gagal
-                LoadAdmobRewarded(activity, MAIN_ADS_REWARDS, MAIN_ADS_REWARDS_BACKUP);
-                break;
-            default:
-                Log.w(TAG, "loadAds: SELECT_MAIN_ADS tidak dikenal → " + SELECT_MAIN_ADS);
-                isLoading = false;
+        boolean applovinOn = SettingAds.isPlacementEnabled(placement, SettingAds.NETWORK_APPLOVIN);
+        boolean admobOn = SettingAds.isPlacementEnabled(placement, SettingAds.NETWORK_ADMOB);
+
+        if (applovinOn && admobOn) {
+            if ("admob".equals(SettingAds.WATERFALL_PRIORITY)) {
+                Log.d(TAG, "loadAds[" + placement + "]: AdMob primary → AppLovin backup");
+                LoadAdmobRewarded(activity, SettingAds.ADMOB_REWARDS, SettingAds.APPLOVIN_REWARDS);
+            } else {
+                Log.d(TAG, "loadAds[" + placement + "]: AppLovin primary → AdMob backup");
+                LoadApplovinRewarded(activity, SettingAds.APPLOVIN_REWARDS, SettingAds.ADMOB_REWARDS);
+            }
+        } else if (admobOn) {
+            Log.d(TAG, "loadAds[" + placement + "]: AdMob only");
+            LoadAdmobRewarded(activity, SettingAds.ADMOB_REWARDS, null);
+        } else if (applovinOn) {
+            Log.d(TAG, "loadAds[" + placement + "]: AppLovin only");
+            LoadApplovinRewarded(activity, SettingAds.APPLOVIN_REWARDS, null);
+        } else {
+            isLoading = false;
         }
+    }
+
+    public static void loadAds(Activity activity) {
+        loadAds(activity, SettingAds.PLACEMENT_REWARDED_SUPER_LIKE);
     }
 
     // ===================================================================
@@ -240,37 +241,38 @@ public class Rewarded {
             return;
         }
 
-        switch (SELECT_MAIN_ADS) {
-            case "APPLOVIN":
-            case "APPLOVIN_ADMOB":
-                if (applovinRewarded != null && applovinRewarded.isReady()) {
-                    Log.d(TAG, "Showing AppLovin rewarded");
-                    pendingCallback = callback;
-                    applovinRewarded.showAd(activity);
-                } else {
-                    Log.d(TAG, "AppLovin rewarded tidak ready saat show");
-                    if (callback != null) callback.onAdFailedToShow("AppLovin ad tidak siap");
-                }
-                break;
-
-            case "ADMOB":
-            case "ADMOB_APPLOVIN":
-                if (admobRewarded != null) {
-                    Log.d(TAG, "Showing AdMob rewarded");
-                    admobRewarded.show(activity, rewardItem -> {
-                        Log.d(TAG, "AdMob user rewarded: " + rewardItem.getAmount());
-                        if (callback != null) callback.onUserEarnedReward(rewardItem.getAmount());
-                    });
-                } else {
-                    Log.d(TAG, "AdMob rewarded null saat show");
-                    if (callback != null) callback.onAdFailedToShow("AdMob ad tidak siap");
-                }
-                break;
-
-            default:
-                Log.w(TAG, "showRewarded: mode tidak dikenal → " + SELECT_MAIN_ADS);
-                if (callback != null) callback.onAdFailedToShow("Mode iklan tidak dikenal");
+        if ("admob".equals(SettingAds.WATERFALL_PRIORITY)) {
+            if (admobRewarded != null) {
+                Log.d(TAG, "Showing AdMob rewarded (priority: admob)");
+                admobRewarded.show(activity, rewardItem -> {
+                    Log.d(TAG, "AdMob user rewarded: " + rewardItem.getAmount());
+                    if (callback != null) callback.onUserEarnedReward(rewardItem.getAmount());
+                });
+                return;
+            } else if (applovinRewarded != null && applovinRewarded.isReady()) {
+                Log.d(TAG, "AdMob not ready, showing fallback AppLovin rewarded");
+                pendingCallback = callback;
+                applovinRewarded.showAd(activity);
+                return;
+            }
+        } else {
+            if (applovinRewarded != null && applovinRewarded.isReady()) {
+                Log.d(TAG, "Showing AppLovin rewarded (priority: applovin)");
+                pendingCallback = callback;
+                applovinRewarded.showAd(activity);
+                return;
+            } else if (admobRewarded != null) {
+                Log.d(TAG, "AppLovin not ready, showing fallback AdMob rewarded");
+                admobRewarded.show(activity, rewardItem -> {
+                    Log.d(TAG, "AdMob user rewarded: " + rewardItem.getAmount());
+                    if (callback != null) callback.onUserEarnedReward(rewardItem.getAmount());
+                });
+                return;
+            }
         }
+
+        Log.d(TAG, "No rewarded ad ready to show");
+        if (callback != null) callback.onAdFailedToShow("Ad belum siap");
     }
 
     // ===================================================================

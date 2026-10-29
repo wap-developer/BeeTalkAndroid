@@ -107,6 +107,9 @@ dependencies {
     // Google Play In-App Review
     implementation libs.review
     implementation libs.app.update
+
+    // Play Billing (subscriptions + one-time boost)
+    implementation libs.billing
     // Testing
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit

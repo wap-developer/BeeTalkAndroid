@@ -60,7 +60,7 @@ public class GDPR {
             String deviceId = (androidId != null) ? md5(androidId).toUpperCase() : "";
 
             debugSettings = new ConsentDebugSettings.Builder(activity)
-                    .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+                    .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_DISABLED)
                     .addTestDeviceHashedId(deviceId)
                     .build();
 

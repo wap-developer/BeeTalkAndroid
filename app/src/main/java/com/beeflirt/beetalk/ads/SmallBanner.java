@@ -18,6 +18,7 @@ import com.applovin.mediation.MaxAdViewAdListener;
 import com.applovin.mediation.MaxError;
 import com.applovin.mediation.ads.MaxAdView;
 import com.beeflirt.beetalk.R;
+import com.beeflirt.beetalk.adsconfig.SettingAds;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -36,6 +37,7 @@ public class SmallBanner {
         Log.d(TAG, "Loading AppLovin banner...");
 
         adViewMax = new MaxAdView(idBanner, activity);
+        final MaxAdView currentAdView = adViewMax;
         adViewMax.setListener(new MaxAdViewAdListener() {
             @Override
             public void onAdExpanded(@NonNull MaxAd maxAd) {
@@ -51,7 +53,9 @@ public class SmallBanner {
             public void onAdLoaded(@NonNull MaxAd maxAd) {
                 Log.d(TAG, "onAdLoaded: " + maxAd);
                 // Banner sudah attached sebelum loadAd(), cukup pastikan visible
-                adViewMax.setVisibility(android.view.View.VISIBLE);
+                if (currentAdView != null) {
+                    currentAdView.setVisibility(android.view.View.VISIBLE);
+                }
             }
 
             @Override
@@ -72,10 +76,10 @@ public class SmallBanner {
             @Override
             public void onAdLoadFailed(@NonNull String s, @NonNull MaxError maxError) {
                 Log.d(TAG, "onAdLoadFailed: " + maxError);
-                // Retry setelah 5 detik agar tidak loop berlebihan
+                // Retry setelah 5 detik jika view masih aktif dan belum diganti
                 new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                    if (!activity.isFinishing() && !activity.isDestroyed()) {
-                        adViewMax.loadAd();
+                    if (!activity.isFinishing() && !activity.isDestroyed() && currentAdView != null && currentAdView == adViewMax) {
+                        currentAdView.loadAd();
                     }
                 }, 5000);
             }
@@ -94,23 +98,34 @@ public class SmallBanner {
         int heightPx = activity.getResources().getDimensionPixelSize(R.dimen.banner_height);
         adViewMax.setLayoutParams(new FrameLayout.LayoutParams(width, heightPx));
         adViewMax.setVisibility(android.view.View.GONE); // sembunyikan dulu
-        layAds.removeAllViews();
-        layAds.addView(adViewMax);
+        if (layAds != null) {
+            layAds.setVisibility(android.view.View.VISIBLE);
+            layAds.removeAllViews();
+            layAds.addView(adViewMax);
+        }
 
         // Load ad
         adViewMax.loadAd();
     }
 
     public static void Admob(Activity activity, RelativeLayout layAds, String idBanner) {
+        if (idBanner == null || idBanner.trim().isEmpty()) {
+            idBanner = SettingAds.ADMOB_BANNER;
+        }
+
         adViewAdmob = new AdView(activity);
+        final AdView currentAdView = adViewAdmob;
 
         // Urutan wajib: setAdUnitId → setAdSize → addView → setListener → loadAd
         adViewAdmob.setAdUnitId(idBanner);
         AdSize adSize = getAdSize(activity);
         adViewAdmob.setAdSize(adSize);
 
-        layAds.removeAllViews();
-        layAds.addView(adViewAdmob);
+        if (layAds != null) {
+            layAds.setVisibility(android.view.View.VISIBLE);
+            layAds.removeAllViews();
+            layAds.addView(adViewAdmob);
+        }
 
         adViewAdmob.setAdListener(new AdListener() {
             @Override
@@ -123,11 +138,11 @@ public class SmallBanner {
             public void onAdFailedToLoad(@NonNull LoadAdError error) {
                 Log.e(TAG, "AdMob banner failed: " + error.getMessage());
                 isAdMobLoaded = false;
-                // Retry setelah 3 detik untuk menghindari infinite loop
+                // Retry setelah 3 detik jika view masih aktif dan belum diganti
                 new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                    if (!activity.isFinishing() && !activity.isDestroyed()) {
+                    if (!activity.isFinishing() && !activity.isDestroyed() && currentAdView != null && currentAdView == adViewAdmob) {
                         AdRequest retryRequest = new AdRequest.Builder().build();
-                        adViewAdmob.loadAd(retryRequest);
+                        currentAdView.loadAd(retryRequest);
                     }
                 }, 3000);
             }
@@ -147,6 +162,7 @@ public class SmallBanner {
         Log.d(TAG, "Loading AppLovin (primary) | AdMob (backup)...");
 
         adViewMax = new MaxAdView(idApplovin, activity);
+        final MaxAdView currentAdView = adViewMax;
         adViewMax.setListener(new MaxAdViewAdListener() {
             @Override public void onAdExpanded(@NonNull MaxAd maxAd) {}
             @Override public void onAdCollapsed(@NonNull MaxAd maxAd) {}
@@ -157,15 +173,19 @@ public class SmallBanner {
             @Override
             public void onAdLoaded(@NonNull MaxAd maxAd) {
                 Log.d(TAG, "AppLovin (primary) loaded ✓");
-                adViewMax.setVisibility(android.view.View.VISIBLE);
+                if (currentAdView != null) {
+                    currentAdView.setVisibility(android.view.View.VISIBLE);
+                }
             }
 
             @Override
             public void onAdLoadFailed(@NonNull String s, @NonNull MaxError maxError) {
                 Log.w(TAG, "AppLovin (primary) gagal → fallback ke AdMob. Error: " + maxError);
                 // Bersihkan AppLovin yang gagal
-                if (adViewMax != null) {
-                    adViewMax.destroy();
+                if (currentAdView != null) {
+                    currentAdView.destroy();
+                }
+                if (adViewMax == currentAdView) {
                     adViewMax = null;
                 }
                 // Fallback ke AdMob (satu kali, tanpa rekursif)
@@ -186,8 +206,10 @@ public class SmallBanner {
         int heightPx = activity.getResources().getDimensionPixelSize(R.dimen.banner_height);
         adViewMax.setLayoutParams(new FrameLayout.LayoutParams(width, heightPx));
         adViewMax.setVisibility(android.view.View.GONE);
-        layAds.removeAllViews();
-        layAds.addView(adViewMax);
+        if (layAds != null) {
+            layAds.removeAllViews();
+            layAds.addView(adViewMax);
+        }
 
         adViewMax.loadAd();
     }
@@ -199,15 +221,23 @@ public class SmallBanner {
      */
     public static void AdmobWithApplovinBackup(Activity activity, RelativeLayout layAds,
                                                 String idAdmob, String idApplovinBackup) {
+        if (idAdmob == null || idAdmob.trim().isEmpty()) {
+            idAdmob = SettingAds.ADMOB_BANNER;
+        }
+
         Log.d(TAG, "Loading AdMob (primary) | AppLovin (backup)...");
 
         adViewAdmob = new AdView(activity);
+        final AdView currentAdView = adViewAdmob;
         adViewAdmob.setAdUnitId(idAdmob);
         AdSize adSize = getAdSize(activity);
         adViewAdmob.setAdSize(adSize);
 
-        layAds.removeAllViews();
-        layAds.addView(adViewAdmob);
+        if (layAds != null) {
+            layAds.setVisibility(android.view.View.VISIBLE);
+            layAds.removeAllViews();
+            layAds.addView(adViewAdmob);
+        }
 
         adViewAdmob.setAdListener(new AdListener() {
             @Override
@@ -220,6 +250,12 @@ public class SmallBanner {
             public void onAdFailedToLoad(@NonNull LoadAdError error) {
                 Log.w(TAG, "AdMob (primary) gagal → fallback ke AppLovin. Error: " + error.getMessage());
                 isAdMobLoaded = false;
+                if (currentAdView != null) {
+                    currentAdView.destroy();
+                }
+                if (adViewAdmob == currentAdView) {
+                    adViewAdmob = null;
+                }
                 // Fallback ke AppLovin (satu kali, tanpa rekursif)
                 if (!activity.isFinishing() && !activity.isDestroyed()) {
                     ApplovinMax(activity, layAds, idApplovinBackup);
@@ -256,6 +292,10 @@ public class SmallBanner {
             DisplayMetrics outMetrics = new DisplayMetrics();
             activity.getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
             adWidthDp = (int) (outMetrics.widthPixels / outMetrics.density);
+        }
+
+        if (adWidthDp <= 0) {
+            return AdSize.BANNER;
         }
 
         // AnchoredAdaptiveBanner = ukuran adaptif untuk banner tetap (bukan scrollable)

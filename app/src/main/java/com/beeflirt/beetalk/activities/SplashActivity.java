@@ -69,19 +69,44 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        // Track session count untuk eligibility in-app review
-        ReviewHelper.trackSession(this);
-
         cardLogo = findViewById(R.id.card_logo);
         ivLogo = findViewById(R.id.iv_logo);
         tvAppName = findViewById(R.id.tv_app_name);
         tvTagline = findViewById(R.id.tv_tagline);
         loader = findViewById(R.id.progress);
 
+        // State awal diset langsung agar tidak ada kedipan tampilan sebelum animasi
+        cardLogo.setScaleX(0f);
+        cardLogo.setScaleY(0f);
+        cardLogo.setAlpha(0f);
+        tvAppName.setAlpha(0f);
+        tvAppName.setTranslationY(50f);
+        tvTagline.setAlpha(0f);
+        tvTagline.setTranslationY(30f);
+
         Glide.with(this).load(R.drawable.loader).into(loader);
 
-        startAnimations();
+        // Eksekusi animasi setelah layout pass pertama selesai agar tidak skip frame
+        cardLogo.post(() -> {
+            if (isFinishing() || (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && isDestroyed())) {
+                return;
+            }
+            startAnimations();
+        });
 
+        // Track session di background thread agar disk I/O tidak membebani main thread
+        new Thread(() -> ReviewHelper.trackSession(SplashActivity.this)).start();
+
+        // Tunda inisialisasi network/ads sedikit agar UI thread fokus render animasi awal
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            if (isFinishing() || (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && isDestroyed())) {
+                return;
+            }
+            initAdsAndFlow();
+        }, 150);
+    }
+
+    private void initAdsAndFlow() {
         Ads.CheckAds(this);
         if (ON_OFF_ADS.equals("1")) {
             if (checkConnectivity()) {
@@ -97,53 +122,51 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void startAnimations() {
-        // Set initial states
-        cardLogo.setScaleX(0f);
-        cardLogo.setScaleY(0f);
-        cardLogo.setAlpha(0f);
+        // Aktifkan hardware layer agar rendering shadow CardView halus di GPU
+        cardLogo.setLayerType(View.LAYER_TYPE_HARDWARE, null);
 
-        tvAppName.setAlpha(0f);
-        tvAppName.setTranslationY(50f);
-
-        tvTagline.setAlpha(0f);
-        tvTagline.setTranslationY(30f);
-
-        // Logo animation - Scale with bounce
-        ObjectAnimator scaleX = ObjectAnimator.ofFloat(cardLogo, "scaleX", 0f, 1.1f, 1f);
-        ObjectAnimator scaleY = ObjectAnimator.ofFloat(cardLogo, "scaleY", 0f, 1.1f, 1f);
+        // Skala logo dengan kurva pantulan natural dari OvershootInterpolator
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(cardLogo, "scaleX", 0f, 1f);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(cardLogo, "scaleY", 0f, 1f);
         ObjectAnimator alpha = ObjectAnimator.ofFloat(cardLogo, "alpha", 0f, 1f);
 
         AnimatorSet logoSet = new AnimatorSet();
         logoSet.playTogether(scaleX, scaleY, alpha);
         logoSet.setDuration(600);
-        logoSet.setInterpolator(new OvershootInterpolator());
-        logoSet.setStartDelay(200);
+        logoSet.setInterpolator(new OvershootInterpolator(1.2f));
 
-        // Logo rotation animation
+        logoSet.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                cardLogo.setLayerType(View.LAYER_TYPE_NONE, null);
+            }
+        });
+
+        // Rotasi logo
         ObjectAnimator rotation = ObjectAnimator.ofFloat(ivLogo, "rotation", 0f, 360f);
         rotation.setDuration(800);
-        rotation.setStartDelay(300);
+        rotation.setStartDelay(100);
         rotation.setInterpolator(new AccelerateDecelerateInterpolator());
 
-        // App name animation
+        // Animasi teks nama app
         tvAppName.animate()
                 .alpha(1f)
                 .translationY(0f)
                 .setDuration(500)
-                .setStartDelay(600)
+                .setStartDelay(350)
                 .setInterpolator(new AccelerateDecelerateInterpolator())
                 .start();
 
-        // Tagline animation
+        // Animasi teks tagline
         tvTagline.animate()
                 .alpha(1f)
                 .translationY(0f)
                 .setDuration(500)
-                .setStartDelay(800)
+                .setStartDelay(550)
                 .setInterpolator(new AccelerateDecelerateInterpolator())
                 .start();
 
-        // Start logo animations
+        // Mulai animasi logo
         logoSet.start();
         rotation.start();
     }
@@ -238,7 +261,7 @@ public class SplashActivity extends BaseActivity {
 
     private void loadUrlData() {
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                Ads.DATA, new Response.Listener<String>() {
+                SettingAds.URL_DATA, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -250,13 +273,24 @@ public class SplashActivity extends BaseActivity {
                         // Waterfall priority
                         SettingAds.WATERFALL_PRIORITY = c.optString("waterfall_priority", "applovin");
 
-                        // Ad Unit IDs (new format)
-                        SettingAds.APPLOVIN_BANNER = c.optString("applovin_banner", SettingAds.APPLOVIN_BANNER);
-                        SettingAds.APPLOVIN_INTERSTITIAL = c.optString("applovin_intertitial", SettingAds.APPLOVIN_INTERSTITIAL);
-                        SettingAds.APPLOVIN_REWARDS = c.optString("applovin_rewards", SettingAds.APPLOVIN_REWARDS);
-                        SettingAds.ADMOB_BANNER = c.optString("admob_banner", SettingAds.ADMOB_BANNER);
-                        SettingAds.ADMOB_INTERSTITIAL = c.optString("admob_intertitial", SettingAds.ADMOB_INTERSTITIAL);
-                        SettingAds.ADMOB_REWARDS = c.optString("admob_rewards", SettingAds.ADMOB_REWARDS);
+                        // Ad Unit IDs (new format) — jangan overwrite dengan string kosong dari backend
+                        String applovinB = c.optString("applovin_banner");
+                        if (!applovinB.trim().isEmpty()) SettingAds.APPLOVIN_BANNER = applovinB.trim();
+
+                        String applovinI = c.optString("applovin_intertitial");
+                        if (!applovinI.trim().isEmpty()) SettingAds.APPLOVIN_INTERSTITIAL = applovinI.trim();
+
+                        String applovinR = c.optString("applovin_rewards");
+                        if (!applovinR.trim().isEmpty()) SettingAds.APPLOVIN_REWARDS = applovinR.trim();
+
+                        String admobB = c.optString("admob_banner");
+                        if (!admobB.trim().isEmpty()) SettingAds.ADMOB_BANNER = admobB.trim();
+
+                        String admobI = c.optString("admob_intertitial");
+                        if (!admobI.trim().isEmpty()) SettingAds.ADMOB_INTERSTITIAL = admobI.trim();
+
+                        String admobR = c.optString("admob_rewards");
+                        if (!admobR.trim().isEmpty()) SettingAds.ADMOB_REWARDS = admobR.trim();
 
                         // Advanced settings
                         SettingAds.INTERVAL_CAPS = c.optInt("interval_caps", 0);
@@ -357,6 +391,7 @@ public class SplashActivity extends BaseActivity {
                     navigateToNextScreen();
                 }, SPLASH_DELAY);
                 Toast.makeText(SplashActivity.this, "Error" + error.toString(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onErrorResponse: " + error.toString());
 
             }
         });

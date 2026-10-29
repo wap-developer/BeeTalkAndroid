@@ -43,8 +43,10 @@ public class ProfileFragment extends Fragment {
     private TextView tvHobbies, tvDreams, tvCompletionText;
     private ProgressBar profileCompletionBar;
     private CardView btnGallery, btnEditProfile, btnPreferences, btnAccountSettings, btnBlockedUsers;
+    private CardView btnWhoLiked, btnPremium;
     private CardView btnLogout;
     private ProgressBar progressBar;
+    private TextView tvPremiumLabel;
 
     private SharedPrefManager prefManager;
     private ApiService apiService;
@@ -77,6 +79,9 @@ public class ProfileFragment extends Fragment {
         btnPreferences = view.findViewById(R.id.btn_preferences);
         btnAccountSettings = view.findViewById(R.id.btn_account_settings);
         btnBlockedUsers = view.findViewById(R.id.btn_blocked_users);
+        btnWhoLiked = view.findViewById(R.id.btn_who_liked);
+        btnPremium = view.findViewById(R.id.btn_premium);
+        tvPremiumLabel = view.findViewById(R.id.tv_premium_label);
         btnLogout = view.findViewById(R.id.btn_logout);
         progressBar = view.findViewById(R.id.progress_bar);
 
@@ -85,6 +90,15 @@ public class ProfileFragment extends Fragment {
             Intent intent = new Intent(requireContext(), com.beeflirt.beetalk.activities.GalleryActivity.class);
             startActivity(intent);
         });
+        if (btnWhoLiked != null) {
+            btnWhoLiked.setOnClickListener(v ->
+                    startActivity(new Intent(requireContext(), com.beeflirt.beetalk.activities.WhoLikedMeActivity.class)));
+        }
+        if (btnPremium != null) {
+            btnPremium.setVisibility(com.beeflirt.beetalk.utils.PremiumManager.getInstance(requireContext()).isPremiumFeatureEnabled() ? View.VISIBLE : View.GONE);
+            btnPremium.setOnClickListener(v ->
+                    startActivity(new Intent(requireContext(), com.beeflirt.beetalk.activities.PremiumActivity.class)));
+        }
         btnEditProfile.setOnClickListener(v -> openEditProfile());
         btnPreferences.setOnClickListener(v -> openPreferences());
         btnAccountSettings.setOnClickListener(v -> openAccountSettings());
@@ -93,6 +107,7 @@ public class ProfileFragment extends Fragment {
 
         // Load profile
         loadProfile();
+        loadEntitlements();
 
         // Initialize and load banner ad
         RelativeLayout bannerContainer = view.findViewById(R.id.banner_container);
@@ -260,6 +275,78 @@ public class ProfileFragment extends Fragment {
         startActivity(intent);
     }
 
+    private void loadEntitlements() {
+        apiService.getEntitlements().enqueue(new Callback<ApiResponse<Map<String, Object>>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<Map<String, Object>>> call,
+                    Response<ApiResponse<Map<String, Object>>> response) {
+                if (!isAdded()) return;
+                if (!response.isSuccessful() || response.body() == null || response.body().getData() == null) {
+                    return;
+                }
+                Map<String, Object> data = response.body().getData();
+                boolean premiumEnabled = false;
+                Object isPremEnabled = data.get("premium_enabled");
+                if (isPremEnabled instanceof Boolean) premiumEnabled = (Boolean) isPremEnabled;
+                else if (isPremEnabled instanceof Number) premiumEnabled = ((Number) isPremEnabled).intValue() == 1;
+
+                boolean premium = false;
+                Object isPrem = data.get("is_premium");
+                if (isPrem instanceof Boolean) premium = (Boolean) isPrem;
+                else if (isPrem instanceof Number) premium = ((Number) isPrem).intValue() == 1;
+
+                String until = data.get("premium_until") != null
+                        ? String.valueOf(data.get("premium_until")) : null;
+                int superLike = 5;
+                int undo = 1;
+                Object quotas = data.get("quotas");
+                if (quotas instanceof Map) {
+                    Map<?, ?> q = (Map<?, ?>) quotas;
+                    if (q.get("super_like_daily") instanceof Number) {
+                        superLike = ((Number) q.get("super_like_daily")).intValue();
+                    }
+                    if (q.get("undo_daily") instanceof Number) {
+                        undo = ((Number) q.get("undo_daily")).intValue();
+                    }
+                }
+                String weekly = "premium_weekly", monthly = "premium_monthly", yearly = "premium_yearly", boost = "boost_30m";
+                Object products = data.get("products");
+                if (products instanceof Map) {
+                    Map<?, ?> p = (Map<?, ?>) products;
+                    if (p.get("weekly") != null) weekly = String.valueOf(p.get("weekly"));
+                    if (p.get("monthly") != null) monthly = String.valueOf(p.get("monthly"));
+                    if (p.get("yearly") != null) yearly = String.valueOf(p.get("yearly"));
+                    if (p.get("boost") != null) boost = String.valueOf(p.get("boost"));
+                }
+                boolean adFree = premium;
+                Object features = data.get("features");
+                if (features instanceof Map) {
+                    Object af = ((Map<?, ?>) features).get("ad_free");
+                    if (af instanceof Boolean) adFree = (Boolean) af;
+                    else if (af instanceof Number) adFree = ((Number) af).intValue() == 1;
+                }
+                String boostUntil = data.get("boost_until") != null
+                        ? String.valueOf(data.get("boost_until")) : null;
+                com.beeflirt.beetalk.utils.PremiumManager.getInstance(requireContext())
+                        .applySnapshot(premiumEnabled, premium, until, superLike, undo, weekly, monthly, yearly,
+                                boost, adFree, boostUntil);
+
+                if (btnPremium != null) {
+                    btnPremium.setVisibility(premiumEnabled ? View.VISIBLE : View.GONE);
+                }
+
+                if (tvPremiumLabel != null) {
+                    tvPremiumLabel.setText(premium ? "Premium active · Ad-free" : "BeeTalk Premium");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<Map<String, Object>>> call, Throwable t) {
+                // keep cache
+            }
+        });
+    }
+
     private void logout() {
         android.app.Dialog dialog = new android.app.Dialog(requireContext());
         dialog.requestWindowFeature(android.view.Window.FEATURE_NO_TITLE);
@@ -307,6 +394,7 @@ public class ProfileFragment extends Fragment {
 
         // Clear local session
         prefManager.clearSession();
+        com.beeflirt.beetalk.utils.PremiumManager.getInstance(requireContext()).clear();
 
         // Reset API client (clear cached token)
         com.beeflirt.beetalk.api.ApiClient.resetApiService();
@@ -321,9 +409,8 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        // Reload profile when fragment resumes
         loadProfile();
-
+        loadEntitlements();
     }
 
     @Override

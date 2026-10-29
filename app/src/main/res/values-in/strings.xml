@@ -5,6 +5,7 @@
     <!-- Welcome -->
     <string name="title_choose">Apakah Anda bingung dengan \nbahasa dalam aplikasi ini? \nJangan Khawatir.</string>
     <string name="language_title">Pilih Bahasa di Bawah Ini</string>
+    <string name="language_format">Bahasa: %s</string>
     <string name="privacy_policy">Kebijakan Privasi</string>
 
     <string name="greetings">Terhubung dengan orang baru di dunia</string>
