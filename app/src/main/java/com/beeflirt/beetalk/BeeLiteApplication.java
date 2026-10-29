@@ -7,9 +7,11 @@ import com.applovin.sdk.AppLovinMediationProvider;
 import com.applovin.sdk.AppLovinSdk;
 import com.applovin.sdk.AppLovinSdkConfiguration;
 import com.applovin.sdk.AppLovinSdkInitializationConfiguration;
+import com.beeflirt.beetalk.utils.Constants;
 import com.google.android.gms.ads.MobileAds;
 
 import java.util.Arrays;
+import java.util.TimeZone;
 
 public class BeeLiteApplication extends Application {
 
@@ -19,6 +21,9 @@ public class BeeLiteApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        // Default timezone Asia/Jakarta (WIB)
+        TimeZone.setDefault(TimeZone.getTimeZone(Constants.APP_TIMEZONE));
 
         ApplovinInitialize();
         AdmobInitialize();

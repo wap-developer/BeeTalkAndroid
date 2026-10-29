@@ -24,8 +24,8 @@ public class PresenceUtils {
 
     private static String getTimeAgo(String dateString) {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-            sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+            sdf.setTimeZone(TimeZone.getTimeZone(Constants.APP_TIMEZONE));
             Date date = sdf.parse(dateString);
             if (date == null) return "";
 

@@ -127,7 +127,7 @@ public class ConversationsAdapter extends RecyclerView.Adapter<ConversationsAdap
     private String getTimeAgo(String timestamp) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
-            sdf.setTimeZone(java.util.TimeZone.getTimeZone("UTC")); // Server kirim UTC
+            sdf.setTimeZone(java.util.TimeZone.getTimeZone(Constants.APP_TIMEZONE));
             Date date = sdf.parse(timestamp);
             if (date == null) return "";
 

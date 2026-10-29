@@ -87,7 +87,7 @@ public class PremiumManager {
         try {
             // server format: yyyy-MM-dd HH:mm:ss — loose parse via epoch if ISO, else treat non-empty active
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.US);
-            sdf.setTimeZone(java.util.TimeZone.getDefault());
+            sdf.setTimeZone(java.util.TimeZone.getTimeZone(Constants.APP_TIMEZONE));
             java.util.Date d = sdf.parse(until);
             return d != null && d.getTime() > System.currentTimeMillis();
         } catch (Exception e) {

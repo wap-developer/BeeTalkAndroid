@@ -17,4 +17,7 @@ public class Constants {
     public static final String KEY_EMAIL = "email";
     public static final String KEY_IS_LOGGED_IN = "is_logged_in";
 
+    // Timezone Configuration
+    public static final String APP_TIMEZONE = "Asia/Jakarta";
+
 }

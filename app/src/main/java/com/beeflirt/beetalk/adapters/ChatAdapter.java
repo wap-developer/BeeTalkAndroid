@@ -28,12 +28,12 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int VIEW_TYPE_SENT_IMAGE = 3;
     private static final int VIEW_TYPE_RECEIVED_IMAGE = 4;
 
-    private static final SimpleDateFormat UTC_PARSER = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+    private static final SimpleDateFormat SERVER_PARSER = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
     private static final SimpleDateFormat LOCAL_TIME = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
     static {
-        UTC_PARSER.setTimeZone(TimeZone.getTimeZone("UTC"));
-        LOCAL_TIME.setTimeZone(TimeZone.getDefault());
+        SERVER_PARSER.setTimeZone(TimeZone.getTimeZone(Constants.APP_TIMEZONE));
+        LOCAL_TIME.setTimeZone(TimeZone.getTimeZone(Constants.APP_TIMEZONE));
     }
 
     private List<Message> messages;
@@ -126,7 +126,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static String formatTime(String timestamp) {
         if (timestamp == null || timestamp.isEmpty()) return "";
         try {
-            Date date = UTC_PARSER.parse(timestamp);
+            Date date = SERVER_PARSER.parse(timestamp);
             if (date == null) return "";
             return LOCAL_TIME.format(date);
         } catch (Exception e) {
