@@ -67,10 +67,7 @@ dependencies {
     
     // SwipeRefreshLayout for pull to refresh
     implementation libs.swiperefreshlayout
-    
-    // OpenStreetMap for maps
-    implementation libs.osmdroid.android
-    
+
     // Firebase Cloud Messaging for push notifications
     implementation libs.firebase.bom
     implementation libs.firebase.messaging
@@ -81,10 +78,7 @@ dependencies {
     
     // Lottie for animations
     implementation libs.lottie
-    
-    // Shimmer for loading effects
-    implementation libs.shimmer
-    
+
     // AdMob - Primary ad network
     implementation libs.play.services.ads
     

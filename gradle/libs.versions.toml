@@ -21,12 +21,10 @@ lottie = "6.7.1"
 material = "1.13.0"
 activity = "1.12.1"
 constraintlayout = "2.2.1"
-osmdroidAndroid = "6.1.20"
 playServicesAds = "25.1.0"
 playServicesLocation = "21.3.0"
 review = "2.0.2"
 room = "2.6.1"
-shimmer = "0.5.0"
 swiperefreshlayout = "1.2.0"
 userMessagingPlatform = "4.0.0"
 viewpager2 = "1.1.0"
@@ -55,14 +53,12 @@ lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 activity = { group = "androidx.activity", name = "activity", version = "1.13.0" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-osmdroid-android = { module = "org.osmdroid:osmdroid-android", version.ref = "osmdroidAndroid" }
 play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converterGson" }
 review = { module = "com.google.android.play:review", version.ref = "review" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
-shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer" }
 swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 user-messaging-platform = { module = "com.google.android.ump:user-messaging-platform", version.ref = "userMessagingPlatform" }
 viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
